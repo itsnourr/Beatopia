@@ -1,3 +1,5 @@
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -18,6 +20,10 @@ function App() {
           Learn React
         </a>
       </header>
+      {/* <div className="container">
+        <h1 className="text-center">Hello, Bootstrap!</h1>
+        <button className="btn btn-primary">Click Me</button>
+      </div> */}
     </div>
   );
 }
