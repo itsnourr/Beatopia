@@ -1,5 +1,5 @@
-from flask import Flask, jsonify
-from flask_cors import CORS  
+from flask import Flask, jsonify # type: ignore
+from flask_cors import CORS   # type: ignore
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for the entire app
