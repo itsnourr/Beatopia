@@ -4,6 +4,7 @@ from SQLAlchemy import create_engine   # type: ignore
 from SQLAlchemy.orm import sessionmaker   # type: ignore
 from models import Base
 
+# App setup
 app = Flask(__name__)
 CORS(app)  # Enable CORS for the entire app
 
