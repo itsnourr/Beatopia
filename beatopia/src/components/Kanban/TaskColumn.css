@@ -1,0 +1,74 @@
+  .container-fluid {
+    background-color: white; /* Light background color */
+  }
+  
+  .card-container {
+    transform: scale(0.95);
+    transition: transform 0.2s;
+  }
+
+  .kanban-column {
+    width: 350px; /* CHANGE LATER */
+    background: linear-gradient(45deg, #6E2AF5 0%, #F52A2A 100%);
+    border-radius: 20px; /* Rounded corners */
+    margin: 10px;
+    padding: 16px;
+    overflow-y: auto;
+    max-height: 720px;
+  }
+
+  .task-cards-container{
+    overflow-y: auto;
+    max-height: 600px;
+  }
+
+  .task-cards-container::-webkit-scrollbar {
+    width: 8px; 
+  }
+
+  .task-cards-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.5); 
+    border-radius: 20px;
+  }
+
+  .task-cards-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.85); 
+    border-radius: 20px; /* Rounded corners */
+  }
+
+  .task-cards-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(235, 235, 235, 0.85); 
+  }
+
+  .row-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .column-title {
+    color: white;
+    padding: 8px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .add-icon {
+    color: white;
+    font-size: 2rem;
+    margin-right: 10px;
+    margin-bottom: 8px;
+    background-color: transparent;
+  }
+
+  .add-icon:hover {
+    /* color: black; */
+    transform: scale(1.2);
+  }
+
+/* Media Query for Responsiveness
+@media (max-width: 768px) {
+    .kanban-column {
+        width: 100%; 
+    }
+} */

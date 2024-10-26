@@ -1,5 +1,6 @@
 .card-container {
-    margin: 8px;
+    margin-bottom: 4px;
+    width: 100%;
   }
   
   .card {
@@ -11,7 +12,7 @@
   }
 
   .card:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
   
   .card-title {
@@ -20,6 +21,10 @@
     color: #000;
     font-weight: bold;
     padding-bottom:0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
   
   .row-container{
