@@ -1,6 +1,6 @@
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import React from 'react';
+import React from 'react'; 
 import './TaskCard.css';
 
 const TaskCard = ({ title, label, dueDate, done}) => {
@@ -16,7 +16,7 @@ const TaskCard = ({ title, label, dueDate, done}) => {
                 
                 <div className="row-container">
                     <div className="card-label">{label}</div>
-                    <div className="empty-flexbox"></div>
+                    <div className="empty-flexbox"></div> 
                 </div>
                 
                 <div className="row-container">

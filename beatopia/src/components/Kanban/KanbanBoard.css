@@ -1,0 +1,6 @@
+.board {
+    display: flex;
+    justify-content: space-around;
+    transform: scale(0.7);
+    margin: 0 auto;
+}

@@ -1,5 +1,5 @@
   .container-fluid {
-    background-color: white; /* Light background color */
+    background-color: white; /* CHANGE LATER */
   }
   
   .card-container {
@@ -8,13 +8,17 @@
   }
 
   .kanban-column {
-    width: 350px; /* CHANGE LATER */
-    background: linear-gradient(45deg, #6E2AF5 0%, #F52A2A 100%);
-    border-radius: 20px; /* Rounded corners */
-    margin: 10px;
+    flex: 1;
+    border-radius: 20px;
+    margin: 20px;
+    margin-left: 60px;
+    margin-right: 60px;
     padding: 16px;
     overflow-y: auto;
+    height: 695px;
     max-height: 720px;
+    width: 450px;
+    max-width: 450px;
   }
 
   .task-cards-container{
@@ -62,7 +66,6 @@
   }
 
   .add-icon:hover {
-    /* color: black; */
     transform: scale(1.2);
   }
 
