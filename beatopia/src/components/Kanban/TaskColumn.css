@@ -19,6 +19,9 @@
     max-height: 720px;
     width: 450px;
     max-width: 450px;
+
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .task-cards-container{

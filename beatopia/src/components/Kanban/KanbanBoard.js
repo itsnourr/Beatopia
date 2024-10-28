@@ -1,38 +1,69 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import React from 'react';
+import React, { useState } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
+import TaskColumn from './TaskColumn';
 import './KanbanBoard.css';
-import TaskColumn from './TaskColumn'
 
 const KanbanBoard = () => {
-    const taskToAdd = [ {title: "Study Control", label: "Control", dueDate: "Today", done: false} ];
+  const [columns, setColumns] = useState({
+    todo: { name: "To-Do", color: "#F52A2A", tasks: [
+      { id: "1", title: "Hausaufgaben Shop", label: "Personal", dueDate: "Nov 5, 2024", done: false },
+      { id: "2", title: "Solve HWK 1", label: "Math", dueDate: "Oct 30, 2024", done: false },
+      { id: "3", title: "Project Meeting", label: "Work", dueDate: "Nov 1, 2024", done: false },
+      { id: "4", title: "Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },
+    ]},
+    doing: { name: "Doing", color: "#2AD7F5", tasks: [
+      { id: "5", title: "Hausaufgaben Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },
+      { id: "6", title: "Project Meeting", label: "Work", dueDate: "Nov 1, 2024", done: false },
+      { id: "7", title: "Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },
+    ]},
+    done: { name: "Done", color: "#2AF567", tasks: [
+      { id: "8", title: "Hausaufgaben Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: true },
+      { id: "9", title: "Solve HWK 1", label: "Math", dueDate: "Oct 30, 2024", done: true },
+      { id: "10", title: "Project Meeting", label: "Work", dueDate: "Nov 1, 2024", done: true },
+      { id: "11", title: "Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: true },
+    ]},
+  });
 
-    const tasksToDo = [
-        { title: "Hausaufgaben Shop", label: "Personal", dueDate: "Nov 5, 2024", done: false },
-        { title: "Solve HWK 1", label: "Math", dueDate: "Oct 30, 2024", done: false },
-        { title: "Project Meeting", label: "Work", dueDate: "Nov 1, 2024", done: false },
-        { title: "Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },
-      ];
+  const onDragEnd = (result) => {
+    const { source, destination } = result;
 
-    const tasksDoing = [
-        { title: "Hausaufgaben Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },
-        { title: "Project Meeting", label: "Work", dueDate: "Nov 1, 2024", done: false },
-        { title: "Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },
-    ];
+    if (!destination) return;
 
-    const tasksDone = [
-        { title: "Hausaufgaben Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: true },
-        { title: "Solve HWK 1", label: "Math", dueDate: "Oct 30, 2024", done: true },
-        { title: "Project Meeting", label: "Work", dueDate: "Nov 1, 2024", done: true },
-        { title: "Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: true },
-      ];
+    if (source.droppableId === destination.droppableId && source.index === destination.index) {
+      return;
+    }
 
-    return (
-        <div className="board">
-            <TaskColumn name="To-Do" color="#F52A2A" tasks={tasksToDo}/>
-            <TaskColumn name="Doing" color="#2AD7F5" tasks={tasksDoing}/>
-            <TaskColumn name="Done" color="#2AF567" tasks={tasksDone}/>
-        </div>
-    );
-}; 
+    const sourceColumn = columns[source.droppableId];
+    const destColumn = columns[destination.droppableId];
+    const sourceTasks = Array.from(sourceColumn.tasks);
+    const destTasks = Array.from(destColumn.tasks);
 
-export default KanbanBoard
+    const [movedTask] = sourceTasks.splice(source.index, 1);
+    destTasks.splice(destination.index, 0, movedTask);
+
+    setColumns({
+      ...columns,
+      [source.droppableId]: { ...sourceColumn, tasks: sourceTasks },
+      [destination.droppableId]: { ...destColumn, tasks: destTasks },
+    });
+  };
+
+  return (
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className="board">
+        {Object.entries(columns).map(([columnId, column]) => (
+          <TaskColumn
+            key={columnId}
+            columnId={columnId}
+            name={column.name}
+            color={column.color}
+            tasks={column.tasks}
+          />
+        ))}
+      </div>
+    </DragDropContext>
+  );
+};
+
+export default KanbanBoard;

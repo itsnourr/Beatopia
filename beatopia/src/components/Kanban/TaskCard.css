@@ -1,6 +1,14 @@
-.card-container {
+  .card-container {
+    -webkit-user-select: none;
+    user-select: none; /* Prevents text selection */
+    cursor: grab;
     margin-bottom: 4px;
     width: 100%;
+  }
+
+  .card-container:active {
+    cursor: grabbing;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
   }
   
   .card {

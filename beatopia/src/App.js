@@ -25,7 +25,8 @@ function App() {
       <body>
           
           <KanbanBoard/>
-          <InputCard/>
+          {/* <InputCard/> */}
+          {/* <TaskCard title="smth" label="hey" dueDate="2022" done /> */}
           
       </body>
       
