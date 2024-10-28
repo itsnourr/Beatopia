@@ -2,6 +2,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import React, { useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import TaskColumn from './TaskColumn';
+import InputCard from './InputCard';
 import './KanbanBoard.css';
 
 const KanbanBoard = () => {
@@ -30,24 +31,50 @@ const KanbanBoard = () => {
 
     if (!destination) return;
 
+    // If the task is dropped in the same position, do nothing
     if (source.droppableId === destination.droppableId && source.index === destination.index) {
-      return;
+        return;
     }
 
     const sourceColumn = columns[source.droppableId];
     const destColumn = columns[destination.droppableId];
-    const sourceTasks = Array.from(sourceColumn.tasks);
-    const destTasks = Array.from(destColumn.tasks);
 
-    const [movedTask] = sourceTasks.splice(source.index, 1);
-    destTasks.splice(destination.index, 0, movedTask);
+    // If moving within the same column
+    if (source.droppableId === destination.droppableId) {
+        const updatedTasks = Array.from(sourceColumn.tasks);
+        const [movedTask] = updatedTasks.splice(source.index, 1);
+        updatedTasks.splice(destination.index, 0, movedTask);
 
-    setColumns({
-      ...columns,
-      [source.droppableId]: { ...sourceColumn, tasks: sourceTasks },
-      [destination.droppableId]: { ...destColumn, tasks: destTasks },
-    });
+        const updatedTask = destination.droppableId === "done-column-id"
+            ? { ...movedTask, done: true }
+            : { ...movedTask, done: false };
+
+        setColumns({
+            ...columns,
+            [source.droppableId]: { ...sourceColumn, tasks: updatedTasks },
+        });
+
+    } else {
+        // Moving between columns
+        const sourceTasks = Array.from(sourceColumn.tasks);
+        const destTasks = Array.from(destColumn.tasks);
+        const [movedTask] = sourceTasks.splice(source.index, 1);
+
+        // Update the 'done' attribute if moving to the 'Done' column
+        const updatedTask = destination.droppableId === "done-column-id"
+            ? { ...movedTask, done: true }
+            : { ...movedTask, done: false };
+
+        destTasks.splice(destination.index, 0, updatedTask);
+
+        setColumns({
+            ...columns,
+            [source.droppableId]: { ...sourceColumn, tasks: sourceTasks },
+            [destination.droppableId]: { ...destColumn, tasks: destTasks },
+        });
+    }
   };
+  
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
