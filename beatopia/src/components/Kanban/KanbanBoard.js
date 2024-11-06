@@ -8,7 +8,7 @@ import './KanbanBoard.css';
 const KanbanBoard = () => {
   const [columns, setColumns] = useState({
     todo: { name: "To-Do", color: "#F52A2A", tasks: [
-      { id: "1", title: "Hausaufgaben Shop", label: "Personal", dueDate: "Nov 5, 2024", done: false },
+      { id: "1", title: "Evödevi Şartlar Shop", label: "Personal", dueDate: "Nov 5, 2024", done: false },
       { id: "2", title: "Solve HWK 1", label: "Math", dueDate: "Oct 30, 2024", done: false },
       { id: "3", title: "Project Meeting", label: "Work", dueDate: "Nov 1, 2024", done: false },
       { id: "4", title: "Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },

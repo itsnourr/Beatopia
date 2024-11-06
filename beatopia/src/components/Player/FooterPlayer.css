@@ -1,0 +1,53 @@
+  .player-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+
+    position: fixed;
+    overflow: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    background-color: blueviolet;
+  }
+
+  .name-stack{
+    margin-bottom: 6px;
+  }
+
+  .player-text{
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 0px;
+    color: #fff;
+  }
+
+  .now-playing{
+    padding-top: 0px;
+    color: #fafafa;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  button{
+    background-color: transparent;
+    border-width: 0px;
+  }
+
+  .edit-icon{
+    background-color: transparent;
+    font-size: 28px;
+    color: #fff;
+  }
+
+  .toggle-button{
+    padding-left: 10px;
+    font-size: 28px;
+    color: #fff;
+  }

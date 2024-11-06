@@ -5,6 +5,9 @@ import TaskCard from './TaskCard';
 import './TaskColumn.css';
 
 const TaskColumn = ({ name, color, tasks, columnId }) => {
+
+  const addTask = () => {};
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -14,7 +17,9 @@ const TaskColumn = ({ name, color, tasks, columnId }) => {
         >
           <div className="row-container">
             <h2 className="column-title">{name}</h2>
-            <i className="bi bi-plus-lg add-icon" title="Create New Task"></i>
+            <button onClick={addTask}>
+                <i className="bi bi-plus-lg add-icon" title="Create New Task"></i>
+            </button>
           </div>
 
           <Droppable droppableId={columnId}>
@@ -38,7 +43,7 @@ const TaskColumn = ({ name, color, tasks, columnId }) => {
                   ))
                 ) : (
                   // This div acts as a placeholder for empty columns
-                  <div style={{ padding: '16px', textAlign: 'center', color: '#ccc' }}>
+                  <div style={{ padding: '16px', textAlign: 'center', color: '#fff' }}>
                     No tasks
                   </div>
                 )}

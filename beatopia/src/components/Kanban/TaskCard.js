@@ -4,6 +4,11 @@ import { Draggable } from 'react-beautiful-dnd';
 import './TaskCard.css';
 
 const TaskCard = ({ id, title, label, dueDate, done, index }) => {
+
+  const editTask = () => {};
+  const markDone = () => {};
+  const archiveTask = () => {};
+
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
@@ -19,7 +24,11 @@ const TaskCard = ({ id, title, label, dueDate, done, index }) => {
                 <div className="card-content">
                     <div className="row-container">
                         <div className="card-title" title={title}>{title}</div>
-                        <i className="bi bi-pencil-square edit-icon" title="Edit Task"></i>
+
+                        <button onClick={editTask}>
+                            <i className="bi bi-pencil-square task-edit-icon" title="Edit Task"></i>
+                        </button>
+                        
                     </div>
                     
                     <div className="row-container">
@@ -29,9 +38,14 @@ const TaskCard = ({ id, title, label, dueDate, done, index }) => {
                     
                     <div className="row-container">
                         <div className="due-date">Due {dueDate}</div>
-                        <i className={`${(done) ? "bi bi-trash-fill" : "bi bi-check-square-fill"} card-icon`}
+
+                        <button onClick={done ? archiveTask : markDone}>
+                        <i className={`${(done) ? 
+                              "bi bi-trash-fill" : "bi bi-check-square-fill"} taskcard-icon`}
                            title={(done) ? "Archive Task" : "Mark as Done"}
                         ></i>
+
+                        </button>
                     </div>
                 </div>
             </div>

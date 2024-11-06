@@ -68,7 +68,12 @@
     background-color: transparent;
   }
 
-  .add-icon:hover {
+  button {
+    background-color: transparent;
+    border-width: 0px;
+  }
+  
+  .button:hover {
     transform: scale(1.2);
   }
 

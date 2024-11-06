@@ -9,6 +9,7 @@ import KanbanBoard from './components/Kanban/KanbanBoard';
 import TaskColumn from './components/Kanban/TaskColumn';
 import InputCard from './components/Kanban/InputCard';
 import TaskCard from './components/Kanban/TaskCard';
+import FooterPlayer from './components/Player/FooterPlayer';
 
 // <------------------------------------------------------------------>
 
@@ -18,15 +19,15 @@ function App() {
   return (
     <div className="App">
 
-      {/* <header className="App-header">
-      </header> */}
-
-      {/* Example content */}
       <body>
           
           <KanbanBoard/>
-          {/* <InputCard/> */}
-          {/* <TaskCard title="smth" label="hey" dueDate="2022" done /> */}
+
+          {/* <div className="test-container">
+              <InputCard/>
+          </div> */}
+
+          <FooterPlayer trackName={"Summer Breeze"}/>
           
       </body>
       

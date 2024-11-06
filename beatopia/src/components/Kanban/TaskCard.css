@@ -69,25 +69,29 @@
     background-color: white;
   }
 
-  .card-icon {
+  .taskcard-icon {
     font-size: 1.7rem;
     color: black;
     background-color: white;
-  }
-
-  .card-icon:hover {
-    transform: scale(1.2);
   }
   
-  .edit-icon {
+  .task-edit-icon {
     font-size: 1.7rem;
     color: gray;
-    background-color: white;
-    margin-left: 4px;
+    background-color: transparent;
+    margin-left: 6px;
   }
 
-  .edit-icon:hover {
+  .task-edit-icon:hover {
     color: black;
+  }
+
+  button{
+    background-color: transparent;
+    border-width: 0px;
+  }
+
+  button:hover {
     transform: scale(1.2);
   }
 
