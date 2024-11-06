@@ -76,10 +76,3 @@
   .button:hover {
     transform: scale(1.2);
   }
-
-/* Media Query for Responsiveness
-@media (max-width: 768px) {
-    .kanban-column {
-        width: 100%; 
-    }
-} */

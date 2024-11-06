@@ -10,6 +10,9 @@ import TaskColumn from './components/Kanban/TaskColumn';
 import InputCard from './components/Kanban/InputCard';
 import TaskCard from './components/Kanban/TaskCard';
 import FooterPlayer from './components/Player/FooterPlayer';
+import AuthField from './components/Authentication/AuthField';
+import SignupForm from './components/Authentication/SignupForm';
+import LoginForm from './components/Authentication/LoginForm';
 
 // <------------------------------------------------------------------>
 
@@ -21,13 +24,11 @@ function App() {
 
       <body>
           
-          <KanbanBoard/>
+          {/* <KanbanBoard/> */}
 
-          {/* <div className="test-container">
-              <InputCard/>
-          </div> */}
+          <LoginForm/>
 
-          <FooterPlayer trackName={"Summer Breeze"}/>
+          {/* <FooterPlayer trackName={"Summer Breeze"}/> */}
           
       </body>
       

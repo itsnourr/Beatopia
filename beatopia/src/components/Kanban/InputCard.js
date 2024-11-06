@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './InputCard.css'; // Assuming you're reusing TaskCard's styles here
+import './InputCard.css'; 
 
 const InputCard = ({ initialTitle = '', initialLabel = '', initialDueDate = '', onSave }) => {
     
@@ -12,10 +12,9 @@ const InputCard = ({ initialTitle = '', initialLabel = '', initialDueDate = '', 
   const handleLabelChange = (e) => setLabel(e.target.value);
   const handleDueDateChange = (e) => setDueDate(e.target.value);
   
-  const handleSave = () => {
-    const taskData = { title, label, dueDate };
-    onSave(taskData);
-  };
+  // Buttons Configuration
+  const saveTask = () => {};
+  const cancelTaskCreation = () => {};
 
   return (
     <div className="card-container col-md-4">
@@ -30,7 +29,10 @@ const InputCard = ({ initialTitle = '', initialLabel = '', initialDueDate = '', 
                 value={title}
                 onChange={handleTitleChange}
               />
-              <i className="bi bi-floppy2-fill save-icon" title="Save Task" onClick={handleSave}></i>
+              <button onClick={saveTask}>
+                  <i className="bi bi-floppy2-fill save-icon" title="Save Task"></i>
+              </button>
+
             </div>
             
             {/* Label Input */}
@@ -58,7 +60,9 @@ const InputCard = ({ initialTitle = '', initialLabel = '', initialDueDate = '', 
                     />
                 </div>
 
-              <i className="bi bi-trash-fill card-icon" title="Delete Task"></i>
+              <button onClick={cancelTaskCreation}>
+                  <i className="bi bi-x-square-fill card-icon" title="Cancel Task Creation"></i>
+              </button>
             </div>
           </div>
         </div>

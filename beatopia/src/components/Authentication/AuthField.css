@@ -1,0 +1,35 @@
+  .field-container{
+    width: 29%;
+  }
+
+  .input-field {
+    background: white;
+    border: 0px solid #ced4da;
+    border-radius: 12px;
+    width: 100%;
+    font-size: 1.35rem;
+    text-align: left;
+    color: #6E2AF5;
+    font-weight: 650;
+    padding-left: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin: 10px 0;
+    transition: border-color 0.3s;
+  }
+  
+  .input-field::placeholder {
+    font-size: 1.35rem;
+    text-align: left;
+    color: #6E2AF5;
+    font-weight: 650;
+    opacity: 1;
+  }
+  
+  .input-field:focus {
+    outline: none;
+    font-size: 1.35rem;
+    text-align: left;
+    color: #000;
+    font-weight: 650;
+  }

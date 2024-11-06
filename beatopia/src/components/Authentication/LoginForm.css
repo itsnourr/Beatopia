@@ -1,0 +1,44 @@
+.overall-container{
+    background: linear-gradient(to bottom, #6E2AF5, #000);
+    padding-top: 70px;
+    height: 100vh;
+  }
+
+  .welcome-message{
+    font-size: 4em;
+    padding-top: 30px;
+    padding-bottom: 32px;
+    color: white;
+  }
+
+  .intro-message{
+    color: white;
+  }
+
+  .inputfields-container{
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .authenticate-button {
+    color: white;
+    font-weight: 620;
+    margin-top: 18px;
+    border: solid white 3px;
+    border-radius: 20px;
+    padding: 4px 20px;
+    font-size: 1.3em;
+  }
+
+  .authenticate-button:hover{
+    transform: scale(1.1);
+  }
+
+  .forgot-password{
+    color: white;
+    margin-top: 50px;
+    font-size: 1em;
+  }

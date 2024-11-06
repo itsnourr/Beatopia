@@ -15,6 +15,9 @@
     width: 100%;
 
     background-color: blueviolet;
+    box-shadow: 0px -4px 10px rgba(255,255,255,1.5);
+    border-radius: 10px 10px 0 0;
+    border-top: solid white 6px;
   }
 
   .name-stack{

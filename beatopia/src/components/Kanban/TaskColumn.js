@@ -1,12 +1,22 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import TaskCard from './TaskCard';
 import './TaskColumn.css';
+import InputCard from './InputCard';
 
 const TaskColumn = ({ name, color, tasks, columnId }) => {
 
-  const addTask = () => {};
+  const [isInputCardVisible, setInputCardVisible] = useState(false);
+
+  const addTask = () => {
+    setInputCardVisible(!isInputCardVisible);
+    // collect data from input card 
+    // add task to Tasks json object
+    // send to Flask server
+    // save to database
+    // toggle visibility to hide InputCard when finish
+  };
 
   return (
     <div className="container-fluid">
@@ -29,6 +39,11 @@ const TaskColumn = ({ name, color, tasks, columnId }) => {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
+
+                {isInputCardVisible && (
+                  <InputCard/>
+                )}
+
                 {tasks.length > 0 ? (
                   tasks.map((task, index) => (
                     <TaskCard 
