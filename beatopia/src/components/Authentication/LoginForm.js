@@ -18,7 +18,7 @@ const LoginForm = ({ }) => {
   return (
     <div className='overall-container'>
         <h1 className='welcome-message'>Welcome back to <b>Beatopia</b></h1>
-        <h4 className='intro-message'>We bet you've miseed your mixes :)</h4>
+        <h4 className='intro-message'>We bet you've missed your mixes :)</h4>
         <div className="inputfields-container">
               <AuthField type={"text"} placeholder={"Username or email address"} value={loginText} onChange={handleLoginTextInput}/>
               <AuthField type={"password"} placeholder={"Enter your password"} value={password} onChange={handlePasswordInput}/>
