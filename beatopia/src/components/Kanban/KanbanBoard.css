@@ -1,6 +1,8 @@
 .board {
     display: flex;
     justify-content: space-around;
-    transform: scale(0.7);
+    transform: scale(0.63);
+    height: 530px;
     margin: 0 auto;
+    margin-bottom: 100px;
 }

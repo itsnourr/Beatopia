@@ -13,6 +13,7 @@ import FooterPlayer from './components/Player/FooterPlayer';
 import AuthField from './components/Authentication/AuthField';
 import SignupForm from './components/Authentication/SignupForm';
 import LoginForm from './components/Authentication/LoginForm';
+import PostAuthNavbar from './components/Navigation/PostAuthNavbar';
 
 // <------------------------------------------------------------------>
 
@@ -26,7 +27,9 @@ function App() {
           
           {/* <KanbanBoard/> */}
 
-          <LoginForm/>
+          <PostAuthNavbar/>
+          <KanbanBoard/>
+          <FooterPlayer trackName={"Summer Hits"}/>
 
           {/* <FooterPlayer trackName={"Summer Breeze"}/> */}
           
