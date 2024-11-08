@@ -3,7 +3,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import AuthField from './AuthField';
 import './LoginForm.css'; 
 
-const LoginForm = ({ }) => {
+const LoginForm = () => {
     
   const [loginText, setLoginText] = useState("");
   const [password, setPassword] = useState("");

@@ -10,7 +10,7 @@ const PreAuthNavbar = () => {
   return (
     <div className='navbar-container'>
         <div className='logo-container'>
-            <img src='\navbar-logo.png'/>
+            <img src={`${process.env.PUBLIC_URL}/navbar-logo.png`} alt="Logo" className='navlogo'/>
         </div>
         <div className='pages-links'>
             <button className='navbar-button' onClick={goToLogin}>Login</button>

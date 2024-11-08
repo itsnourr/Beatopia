@@ -13,7 +13,7 @@ const PostAuthNavbar = () => {
   return (
     <div className='navbar-container'>
         <div className='logo-container'>
-            <img src='\navbar-logo.png' className='navlogo' onClick={goToHome} title='Back to Home'/>
+            <img src={`${process.env.PUBLIC_URL}/navbar-logo.png`} alt="Logo" className='navlogo' onClick={goToHome} title='Back to Home'/>
         </div>
         <div className='navbar-links'>
             <button className='navbar-button' onClick={goToDashboard} title='Dashboard'>Dashboard</button>

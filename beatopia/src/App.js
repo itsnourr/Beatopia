@@ -14,6 +14,8 @@ import AuthField from './components/Authentication/AuthField';
 import SignupForm from './components/Authentication/SignupForm';
 import LoginForm from './components/Authentication/LoginForm';
 import PostAuthNavbar from './components/Navigation/PostAuthNavbar';
+import SettingsInputField from './components/Settings/SettingsInputField';
+import SettingsPanel from './components/Settings/SettingsPanel';
 
 // <------------------------------------------------------------------>
 
@@ -24,14 +26,12 @@ function App() {
     <div className="App">
 
       <body>
-          
-          {/* <KanbanBoard/> */}
 
           <PostAuthNavbar/>
+          
           <KanbanBoard/>
-          <FooterPlayer trackName={"Summer Hits"}/>
 
-          {/* <FooterPlayer trackName={"Summer Breeze"}/> */}
+          <FooterPlayer trackName={"Summer Vibes"}/>
           
       </body>
       

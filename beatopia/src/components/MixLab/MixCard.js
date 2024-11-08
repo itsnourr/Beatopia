@@ -16,7 +16,7 @@ const MixCard = ({ id, beat, sound, index }) => {
     <div className="card text-center">
         <div className="card-body">
             <div className='card-image'>
-                <img src='/mix-cover.png' alt="Card" />
+                <img src={`${process.env.PUBLIC_URL}/mix-cover.png`} alt="Card" />
             </div>
             <div className="card-content">
 

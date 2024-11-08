@@ -1,0 +1,116 @@
+  .settings-field-button-wrapper{
+    display: flex;
+    margin-left: 8px;
+    justify-content: start;
+    align-items: center;
+  }
+  
+  .settings-field-container{
+    width: 29%;
+  }
+
+  .settings-input-field {
+    background: #6e2af5;
+    border: 0px solid #ced4da;
+    border-radius: 12px;
+    width: 100%;
+    font-size: 1.35rem;
+    text-align: left;
+    color: white;
+    font-weight: 650;
+    padding-left: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin: 10px 0;
+    transition: border-color 0.3s;
+  }
+  
+  .settings-input-field::placeholder {
+    font-size: 1.35rem;
+    text-align: left;
+    color: white;
+    font-weight: 650;
+    opacity: 1;
+  }
+  
+  .settings-input-field:focus {
+    outline: none;
+    font-size: 1.35rem;
+    text-align: left;
+    color: #000;
+    font-weight: 650;
+  }
+
+  .settings-submit-button{
+    border: solid #6e2af5 4px;
+    border-radius: 12px;
+    background-color: white;
+    margin-left: 32px;
+    color: #6e2af5;
+    padding: 4px 10px;
+    font-weight: 650;
+    font-size: 1.35em;
+    cursor: pointer;
+  }
+
+  .settings-submit-button:hover{
+    transform: scale(1.1);
+  }
+
+  /* Disabled Styling */
+
+  .disabled-settings-field-container{
+    width: 29%;
+  }
+
+  .disabled-settings-input-field:hover{
+    cursor: not-allowed;
+  }
+
+  .disabled-settings-input-field {
+    background: #d9d9d9;
+    border: 0px solid #ced4da;
+    border-radius: 12px;
+    width: 100%;
+    font-size: 1.35rem;
+    text-align: left;
+    color: #535353;
+    font-weight: 650;
+    padding-left: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin: 10px 0;
+    transition: border-color 0.3s;
+  }
+  
+  .disabled-settings-input-field::placeholder {
+    font-size: 1.35rem;
+    text-align: left;
+    color: #535353;
+    font-weight: 650;
+    opacity: 1;
+  }
+  
+  .disabled-settings-input-field:focus {
+    outline: none;
+    font-size: 1.35rem;
+    text-align: left;
+    color: #000;
+    font-weight: 650;
+  }
+
+  .disabled-settings-submit-button{
+    border: solid #535353 4px;
+    border-radius: 12px;
+    background-color: white;
+    margin-left: 32px;
+    color: #535353;
+    padding: 4px 10px;
+    font-weight: 650;
+    font-size: 1.35em;
+  }
+
+  .disabled-settings-submit-button:hover{
+    transform: scale(1);
+    cursor: not-allowed;
+  }
