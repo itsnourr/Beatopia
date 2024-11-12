@@ -1,6 +1,6 @@
 
-from SQLAlchemy import Column, Integer, String  # type: ignore 
-from SQLAlchemy.ext.declarative import declarative_base  # type: ignore
+from sqlalchemy import Column, Integer, String  # type: ignore 
+from sqlalchemy.ext.declarative import declarative_base  # type: ignore
 
 Base = declarative_base()  # Create a base class for declarative models
 
