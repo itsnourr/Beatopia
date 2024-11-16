@@ -14,8 +14,12 @@ import AuthField from './components/Authentication/AuthField';
 import SignupForm from './components/Authentication/SignupForm';
 import LoginForm from './components/Authentication/LoginForm';
 import PostAuthNavbar from './components/Navigation/PostAuthNavbar';
+import PreAuthNavbar from './components/Navigation/PreAuthNavbar';
 import SettingsInputField from './components/Settings/SettingsInputField';
 import SettingsPanel from './components/Settings/SettingsPanel';
+import SearchBar from './components/Navigation/SearchBar';
+import MyMixes from './components/MyMixes/MyMixes';
+import Home from './components/Homepage/Home';
 
 // <------------------------------------------------------------------>
 
@@ -29,7 +33,10 @@ function App() {
 
           <PostAuthNavbar/>
           
-          <KanbanBoard/>
+          {/* <SettingsPanel username={"its.nourr"}/> */}
+          {/* <KanbanBoard/> */}
+          {/* <SearchBar placeholder={"Search my mixes by name eg. lo-fi study mix"}/> */}
+          <Home/>
 
           <FooterPlayer trackName={"Summer Vibes"}/>
           
