@@ -1,13 +1,17 @@
+from db import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
-from sqlalchemy import Column, Integer, String  # type: ignore 
-from sqlalchemy.ext.declarative import declarative_base  # type: ignore
-
-Base = declarative_base()  # Create a base class for declarative models
-
-# Sample User model
-# class User(Base):
-#     __tablename__ = 'users'  # Table name in the database
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(150), unique=True, nullable=False)
+    email = db.Column(db.String(150), unique=True, nullable=False)
+    password_hash = db.Column(db.String(200), nullable=False)
     
-#     id = Column(Integer, primary_key=True)  # Primary key
-#     name = Column(String, nullable=False)     # User's name (non-nullable)
-#     age = Column(Integer)                      # User's age (nullable)
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+    
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+    
+    def __repr__(self):
+        return f'<User {self.username}>'

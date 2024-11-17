@@ -1,23 +1,25 @@
-from flask import Flask, render_template, jsonify # type: ignore
-from flask_cors import CORS         # type: ignore
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required
-from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
-from models import Base
-from routes.auth import auth_blueprint
+from flask import Flask
+from auth import auth_blueprint
+from routes import protected_blueprint
+from db import db
 
-# App setup
-app = Flask(__name__)
-app.config.from_object('config.Config')
-CORS(app)  # Enable CORS for the entire app
 
-app.register_blueprint(auth_blueprint, url_prefix="/auth")
+def create_app():
+    app = Flask(__name__)
+    
+    # Load configurations from config.py
+    app.config.from_object('config.Config')
+    
+    # Initialize the database with the app
+    db.init_app(app)
+    
+    # Register Blueprints
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
+    app.register_blueprint(protected_blueprint, url_prefix='/protected')
+    
+    return app
 
-db = SQLAlchemy(app)
-
-login_manager = LoginManager()
-login_manager.init_app(app)
 
 if __name__ == '__main__':
+    app = create_app()
     app.run(debug=True, port=5000)
