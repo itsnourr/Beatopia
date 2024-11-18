@@ -16,7 +16,7 @@ const TitledMixCard = ({ id, title, beat, sound, index }) => {
   return (
     <div className='parent-wrapper'>
         <MixCard beat={beat} sound={sound} />
-        <h4>{title}</h4>
+        <h4 className='mix-title' title={title}>{title}</h4>
     </div>
   );
 };

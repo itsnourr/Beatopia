@@ -46,7 +46,7 @@ const TaskColumn = ({ name, color, tasks, columnId }) => {
 
                 {tasks.length > 0 ? (
                   tasks.map((task, index) => (
-                    <TaskCard 
+                    <TaskCard  
                       key={task.id} 
                       id={task.id} 
                       title={task.title} 

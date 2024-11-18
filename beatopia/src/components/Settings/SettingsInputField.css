@@ -6,7 +6,7 @@
   }
   
   .settings-field-container{
-    width: 29%;
+    width: 100%;
   }
 
   .settings-input-field {
@@ -60,7 +60,7 @@
   /* Disabled Styling */
 
   .disabled-settings-field-container{
-    width: 29%;
+    width: 100%;
   }
 
   .disabled-settings-input-field:hover{

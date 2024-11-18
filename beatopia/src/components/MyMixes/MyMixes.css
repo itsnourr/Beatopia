@@ -1,0 +1,17 @@
+
+  .welcome-message{
+    margin-top: 40px;
+  }
+
+  .my-mixes-search-bar {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    transform: scale(1.1);
+    margin-left: 70px;
+    margin-right: 70px;
+  }
+
+  .beatopia-span{
+    color: #6e2af5;
+    font-style: oblique;
+  }

@@ -8,14 +8,14 @@ from flask_cors import cross_origin
 @auth_blueprint.route('/register', methods=['POST'])
 def register():
     data = request.json
-    hashed_password = generate_password_hash(data['password'])
-    email = data['email']
+    #hashed_password = generate_password_hash(data['password'])  
+    #data['password'] already hashed. Idk why?
 
-    existing_user = User.query.filter_by(email=email).first()
+    existing_user = User.query.filter_by(email=data['email']).first()
     if existing_user:
         return jsonify(message="Email already exists"), 400
     
-    new_user = User(username=data['username'], password=hashed_password, email=email)
+    new_user = User(username=data['username'], password=data['password'], email=data['email'])
     
     db.session.add(new_user)
     db.session.commit()

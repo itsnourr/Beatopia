@@ -5,7 +5,7 @@ import './TaskCard.css';
 
 const TaskCard = ({ id, title, label, dueDate, done, index }) => {
 
-  const editTask = () => {};
+  const editTask = () => {}; 
   const markDone = () => {};
   const archiveTask = () => {};
 

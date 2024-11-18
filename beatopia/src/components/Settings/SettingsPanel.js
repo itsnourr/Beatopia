@@ -4,7 +4,7 @@ import './SettingsPanel.css';
 
 import SettingsInputField from './SettingsInputField';
 
-const SettingsPanel = () => {
+const SettingsPanel = ({ username }) => {
 
     const oldPasswordConfirmed = false;
     
@@ -26,22 +26,53 @@ const SettingsPanel = () => {
     };
     const submitNewPassword = () => {};
 
+    // Danger Zone
+
+    const logout = () => {};
+    const deleteAccount = () => {};
+
     return (
-        <div className='settings-panel'>
-            
-            <SettingsInputField placeholder={"Enter new username"} type={"text"} value={newUsername} 
-                                onChange={handleNewUsernameInput} submit={submitNewUsername} disabled={false} />
-            
-            <SettingsInputField placeholder={"Enter new mail address"} type={"text"} value={newMailAddress} 
-                                onChange={handleNewMailAddress} submit={submitNewMailAddress} disabled={false} />
+        <div className='settings-panel-container'>
 
-            <SettingsInputField placeholder={"Enter old password first"} type={"password"} value={oldPassword} 
-                                onChange={handleOldPasswordInput} submit={submitOldPassword} disabled={false} />
-            
-            <SettingsInputField placeholder={"Enter new password here"} type={"password"} value={newPassword} 
-                                onChange={handleNewPasswordInput} submit={submitNewPassword} disabled={!oldPasswordConfirmed} />
+            <div className='username-container'>
+                <img src={`${process.env.PUBLIC_URL}/avatar.png`} alt="Avatar" className={"avatar"}/>
+                <h4 className='username'>Hello {username} !</h4>
+            </div>
 
-            <img src={`${process.env.PUBLIC_URL}/avatar.png`} alt="Avatar"/>
+            <div className='settings-panel'>
+
+                <div className='settings-left-side'>
+
+                        <div className='settings-field-desc'>Change username :</div>
+
+                        <div className='settings-field-desc'>Change email address :</div>
+
+                        <div className='settings-field-desc'>Change your password :</div>
+
+                        <div className='settings-field-desc'></div>
+
+                        <button className='logout-button' onClick={logout} title='Logout'>Logout</button>
+
+                        <button className='delete-account' onClick={deleteAccount} title='Delete Account'>Delete Account</button>
+
+                </div>
+
+                <div className='settings-fields'>
+            
+                    <SettingsInputField placeholder={"Enter new username"} type={"text"} value={newUsername} 
+                                        onChange={handleNewUsernameInput} submit={submitNewUsername} disabled={false} />
+                    
+                    <SettingsInputField placeholder={"Enter new mail address"} type={"text"} value={newMailAddress} 
+                                        onChange={handleNewMailAddress} submit={submitNewMailAddress} disabled={false} />
+
+                    <SettingsInputField placeholder={"Enter old password first"} type={"password"} value={oldPassword} 
+                                        onChange={handleOldPasswordInput} submit={submitOldPassword} disabled={false} />
+                    
+                    <SettingsInputField placeholder={"Enter new password here"} type={"password"} value={newPassword} 
+                                        onChange={handleNewPasswordInput} submit={submitNewPassword} disabled={!oldPasswordConfirmed} />
+                 </div>
+
+            </div>
 
         </div>    
   );

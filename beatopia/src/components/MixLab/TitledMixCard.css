@@ -1,7 +1,13 @@
  .parent-wrapper{
   margin: 10px 20px;
+  max-width: 208px;
  }
 
- h4 {
+ .mix-title {
   margin-top: 8px;
+  padding:4px; 
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
  }

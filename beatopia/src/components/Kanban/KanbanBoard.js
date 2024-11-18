@@ -7,24 +7,37 @@ import './KanbanBoard.css';
 
 const KanbanBoard = () => {
   const [columns, setColumns] = useState({
-    todo: { name: "To-Do", color: "#F52A2A", tasks: [
-      { id: "1", title: "Evödevi Şartlar Shop", label: "Personal", dueDate: "Nov 5, 2024", done: false },
-      { id: "2", title: "Solve HWK 1", label: "Math", dueDate: "Oct 30, 2024", done: false },
-      { id: "3", title: "Project Meeting", label: "Work", dueDate: "Nov 1, 2024", done: false },
-      { id: "4", title: "Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },
-    ]},
-    doing: { name: "Doing", color: "#2AD7F5", tasks: [
-      { id: "5", title: "Hausaufgaben Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },
-      { id: "6", title: "Project Meeting", label: "Work", dueDate: "Nov 1, 2024", done: false },
-      { id: "7", title: "Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },
-    ]},
-    done: { name: "Done", color: "#2AF567", tasks: [
-      { id: "8", title: "Hausaufgaben Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: true },
-      { id: "9", title: "Solve HWK 1", label: "Math", dueDate: "Oct 30, 2024", done: true },
-      { id: "10", title: "Project Meeting", label: "Work", dueDate: "Nov 1, 2024", done: true },
-      { id: "11", title: "Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: true },
-    ]},
+    todo: {
+      name: "To-Do",
+      color: "#F52A2A",
+      tasks: [
+        { id: "1", title: "Buy Stationery for School", label: "Personal", dueDate: "Nov 5, 2024", done: false },
+        { id: "2", title: "Complete Math Homework", label: "Math", dueDate: "Oct 30, 2024", done: false },
+        { id: "3", title: "Prepare for Team Meeting", label: "Work", dueDate: "Nov 1, 2024", done: false },
+        { id: "4", title: "Plan Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },
+      ]
+    },
+    doing: {
+      name: "Doing",
+      color: "#2AD7F5",
+      tasks: [
+        { id: "5", title: "Research Travel Plans", label: "Personal", dueDate: "Nov 5, 2024", done: false },
+        { id: "6", title: "Work on Project Draft", label: "Work", dueDate: "Nov 1, 2024", done: false },
+        { id: "7", title: "Shop for Essentials", label: "Personal", dueDate: "Nov 5, 2024", done: false },
+      ]
+    },
+    done: {
+      name: "Done",
+      color: "#2AF567",
+      tasks: [
+        { id: "8", title: "Finish Morning Workout", label: "Personal", dueDate: "Nov 5, 2024", done: true },
+        { id: "9", title: "Submit Math Assignment", label: "Math", dueDate: "Oct 30, 2024", done: true },
+        { id: "10", title: "Attend Project Kickoff", label: "Work", dueDate: "Nov 1, 2024", done: true },
+        { id: "11", title: "Weekly Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: true },
+      ]
+    }
   });
+  
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
