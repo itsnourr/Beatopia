@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap
 import React from 'react'; // Import React
@@ -19,25 +20,15 @@ import SettingsPanel from './components/Settings/SettingsPanel';
 
 // <------------------------------------------------------------------>
 
-function App() {
-  
-
+const App = () => {
   return (
-    <div className="App">
-
-      <body>
-
-          <PostAuthNavbar/>
-          
-          <KanbanBoard/>
-
-          <FooterPlayer trackName={"Summer Vibes"}/>
-          
-      </body>
-      
-      
-    </div>
+    <Router>
+      <Routes>
+      <Route path="/" element={<SignupForm />} />
+        <Route path="/login" element={<LoginForm />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
