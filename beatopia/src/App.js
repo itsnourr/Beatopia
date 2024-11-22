@@ -35,8 +35,9 @@ function App() {
           
           {/* <SettingsPanel username={"its.nourr"}/> */}
           {/* <KanbanBoard/> */}
+          <SignupForm/>
           {/* <SearchBar placeholder={"Search my mixes by name eg. lo-fi study mix"}/> */}
-          <Home/>
+          {/* <Home/> */}
 
           <FooterPlayer trackName={"Summer Vibes"}/>
           

@@ -1,7 +1,7 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React from 'react'; 
 import { Draggable } from 'react-beautiful-dnd';
-import './TaskCard.css';
+import './TaskCard.module.css';
 
 const TaskCard = ({ id, title, label, dueDate, done, index }) => {
 

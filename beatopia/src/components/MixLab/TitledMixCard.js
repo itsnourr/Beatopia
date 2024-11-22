@@ -1,7 +1,7 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React, { useState } from 'react'; 
 import MixCard from './MixCard';
-import './TitledMixCard.css';
+import './TitledMixCard.module.css';
 
 const TitledMixCard = ({ id, title, beat, sound, index }) => {
 

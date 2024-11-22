@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './InputCard.css'; 
+import './InputCard.module.css'; 
 
 const InputCard = ({ initialTitle = '', initialLabel = '', initialDueDate = '', onSave }) => {
     

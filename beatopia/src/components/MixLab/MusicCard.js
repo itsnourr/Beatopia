@@ -1,6 +1,6 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React, { useState } from 'react'; 
-import './MusicCard.css';
+import './MusicCard.module.css';
 
 const MusicCard = ({ id, title, label, index }) => {
 

@@ -1,6 +1,6 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React, { useState } from 'react'; 
-import './MixCard.css';
+import './MixCard.module.css';
 
 const MixCard = ({ id, beat, sound, index }) => {
 

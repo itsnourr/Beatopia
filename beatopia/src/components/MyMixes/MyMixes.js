@@ -4,7 +4,6 @@ import './MyMixes.css';
 
 import SearchBar from '../Navigation/SearchBar';
 import TitledMixCard from '../MixLab/TitledMixCard';
-import CardGrid from './CardGrid';
 
 const MyMixes = () => {
 
@@ -60,7 +59,7 @@ const MyMixes = () => {
     return (
         <div className='settings-panel-container'>
 
-            <h2 className='welcome-message'> Welcome to <span className='beatopia-span'> Mixes </span> ! What shall we listen to today?</h2>
+            <h2 className='welcome-mixes'> Welcome to <span className='beatopia-span'> Mixes </span> ! What shall we listen to today?</h2>
 
             <div className='my-mixes-search-bar'>
                 
