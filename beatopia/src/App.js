@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap
 import React from 'react'; // Import React
@@ -23,29 +24,18 @@ import Home from './components/Homepage/Home';
 
 // <------------------------------------------------------------------>
 
-function App() {
-  
-
+const App = () => {
   return (
-    <div className="App">
-
-      <body>
-
-          <PostAuthNavbar/>
-          
-          {/* <SettingsPanel username={"its.nourr"}/> */}
-          <KanbanBoard/>
-          <MyMixes/>
-          {/* <SearchBar placeholder={"Search my mixes by name eg. lo-fi study mix"}/> */}
-          {/* <Home/> */}
-
-          <FooterPlayer trackName={"Summer Vibes"}/>
-          
-      </body>
-      
-      
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/register" element={<SignupForm />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/home" element={<Home />} />
+        
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
