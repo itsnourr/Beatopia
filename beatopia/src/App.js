@@ -26,32 +26,15 @@ import Home from './components/Homepage/Home';
 
 const App = () => {
   return (
-<<<<<<< HEAD
     <Router>
       <Routes>
-      <Route path="/" element={<SignupForm />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/register" element={<SignupForm />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/home" element={<Home />} />
+        
       </Routes>
     </Router>
-=======
-    <div className="App">
-
-      <body>
-
-          <PostAuthNavbar/>
-          
-          {/* <SettingsPanel username={"its.nourr"}/> */}
-          {/* <KanbanBoard/> */}
-          {/* <SearchBar placeholder={"Search my mixes by name eg. lo-fi study mix"}/> */}
-          <Home/>
-
-          <FooterPlayer trackName={"Summer Vibes"}/>
-          
-      </body>
-      
-      
-    </div>
->>>>>>> 69a67ade0d741d2edf75af700d98a922dd490d3a
   );
 };
 

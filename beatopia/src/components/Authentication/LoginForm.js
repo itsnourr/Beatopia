@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import AuthField from './AuthField';
-import './LoginForm.css'; 
+import './LoginForm.css';
 
 const LoginForm = () => {
     
   const [loginText, setLoginText] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const { login } = useAuth();
 
-
+  
   const handleLoginTextInput = (e) => setLoginText(e.target.value);
   const handlePasswordInput = (e) => setPassword(e.target.value);
 
@@ -26,7 +27,7 @@ const LoginForm = () => {
       const token = response.data.access_token;
       localStorage.setItem('token', token);
       console.log('Login successful. Redirecting...');
-      window.location.href = '/dashboard';
+      window.location.href = '/home';
     } catch (error) {
       setErrorMessage('Invalid credentials. Please try again.');
     }

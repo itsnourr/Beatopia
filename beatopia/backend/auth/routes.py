@@ -37,8 +37,6 @@ def login():
     if user is None:
         return jsonify({"message": "User not found"}), 404
 
-    print(data['password'] + "|")
-
     # If user is found, check if the password matches
     if check_password_hash(user.password, data['password']):
         access_token = create_access_token(identity={'id': user.id, 'username': user.username})
