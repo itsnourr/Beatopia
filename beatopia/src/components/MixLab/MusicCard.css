@@ -1,4 +1,4 @@
-.card-container {
+  .card-container {
     -webkit-user-select: none;
     user-select: none; /* Prevents text selection */
     cursor: grab;

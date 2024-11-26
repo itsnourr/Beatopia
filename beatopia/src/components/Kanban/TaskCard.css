@@ -1,17 +1,17 @@
-  .card-container {
+  .card-container.taskcard {
     -webkit-user-select: none;
-    user-select: none; /* Prevents text selection */
+    user-select: none; 
     cursor: grab;
     margin-bottom: 4px;
     width: 100%;
   }
 
-  .card-container:active {
+  .card-container:active.taskcard {
     cursor: grabbing;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
   }
   
-  .card {
+  .card.taskcard {
     background-color: white;
     border-radius: 20px;
     border-right: 10px solid #000;
@@ -19,11 +19,11 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
 
-  .card:hover {
+  .card.taskcard:hover {
     transform: scale(1.02);
   }
   
-  .card-title {
+  .card-title.taskcard {
     font-size: 1.65rem;
     text-align: left;
     color: #000;
@@ -35,13 +35,13 @@
     max-width: 100%;
   }
   
-  .row-container{
+  .row-container.taskcard {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  .card-label {
+  .card-label.taskcard {
     color: white;
     background-color: black;
     font-weight: 630;
@@ -54,14 +54,14 @@
 
   }
   
-  .card-footer {
+  .card-footer.taskcard {
     padding: 0px;
     margin: 0px;
     border: 0px;
     background-color: white;
   }
 
-  .due-date {
+  .due-date.taskcard {
     color: black;
     text-align: left;
     font-weight: bold;
@@ -69,32 +69,32 @@
     background-color: white;
   }
 
-  .taskcard-icon {
+  .taskcard-icon.taskcard {
     font-size: 1.7rem;
     color: black;
     background-color: white;
   }
   
-  .task-edit-icon {
+  .task-edit-icon.taskcard {
     font-size: 1.7rem;
     color: gray;
     background-color: transparent;
     margin-left: 6px;
   }
 
-  .task-edit-icon:hover {
+  .task-edit-icon.taskcard:hover {
     color: black;
   }
 
-  button{
+  button.taskcard{
     background-color: transparent;
     border-width: 0px;
   }
 
-  button:hover {
+  button.taskcard:hover {
     transform: scale(1.2); 
   }
 
-  .empty-flexbox {
+  .empty-flexbox.taskcard {
     flex: 1;
   }

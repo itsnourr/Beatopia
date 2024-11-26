@@ -34,8 +34,8 @@ function App() {
           <PostAuthNavbar/>
           
           {/* <SettingsPanel username={"its.nourr"}/> */}
-          {/* <KanbanBoard/> */}
-          <SignupForm/>
+          <KanbanBoard/>
+          <MyMixes/>
           {/* <SearchBar placeholder={"Search my mixes by name eg. lo-fi study mix"}/> */}
           {/* <Home/> */}
 

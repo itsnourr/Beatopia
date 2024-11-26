@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './InputCard.module.css'; 
+import './InputCard.css'; 
 
 const InputCard = ({ initialTitle = '', initialLabel = '', initialDueDate = '', onSave }) => {
     
@@ -17,29 +17,29 @@ const InputCard = ({ initialTitle = '', initialLabel = '', initialDueDate = '', 
   const cancelTaskCreation = () => {};
 
   return (
-    <div className="card-container col-md-4">
-      <div className="card text-center">
-        <div className="card-body">
-          <div className="card-content">
-            <div className="row-container">
+    <div className="card-container col-md-4 inputcard">
+      <div className="card text-center inputcard">
+        <div className="card-body inputcard">
+          <div className="card-content inputcard">
+            <div className="row-container inputcard">
               <input
                 type="text"
-                className="title-inputfield"
+                className="title-inputfield inputcard"
                 placeholder="Enter Title..."
                 value={title}
                 onChange={handleTitleChange}
               />
               <button onClick={saveTask}>
-                  <i className="bi bi-floppy2-fill save-icon" title="Save Task"></i>
+                  <i className="bi bi-floppy2-fill save-icon inputcard" title="Save Task"></i>
               </button>
 
             </div>
             
             {/* Label Input */}
-            <div className="row-container">
+            <div className="row-container inputcard">
               <input
                 type="text"
-                className="label-inputfield"
+                className="label-inputfield inputcard"
                 placeholder="Enter Label"
                 value={label}
                 onChange={handleLabelChange}
@@ -47,13 +47,13 @@ const InputCard = ({ initialTitle = '', initialLabel = '', initialDueDate = '', 
             </div>
 
             {/* Due Date Input */}
-            <div className="row-container">
+            <div className="row-container inputcard">
 
-                <div className='row-due-date-container'>
-                    <div className="due-date">Due</div>
+                <div className='row-due-date-container inputcard'>
+                    <div className="due-date inputcard">Due</div>
                     <input
                         type="date"
-                        className="due-date-inputfield"
+                        className="due-date-inputfield inputcard"
                         placeholder='Add'
                         value={dueDate}
                         onChange={handleDueDateChange}
@@ -61,7 +61,7 @@ const InputCard = ({ initialTitle = '', initialLabel = '', initialDueDate = '', 
                 </div>
 
               <button onClick={cancelTaskCreation}>
-                  <i className="bi bi-x-square-fill card-icon" title="Cancel Task Creation"></i>
+                  <i className="bi bi-x-square-fill card-icon inputcard" title="Cancel Task Creation"></i>
               </button>
             </div>
           </div>
