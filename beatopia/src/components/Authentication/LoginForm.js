@@ -9,7 +9,7 @@ const LoginForm = () => {
   const [loginText, setLoginText] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { login } = useAuth();
+  // const { login } = useAuth();
 
   
   const handleLoginTextInput = (e) => setLoginText(e.target.value);

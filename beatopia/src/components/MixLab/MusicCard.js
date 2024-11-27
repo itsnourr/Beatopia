@@ -13,25 +13,25 @@ const MusicCard = ({ id, title, label, index }) => {
   const selectMusic = () => {};
 
   return (
-    <div className="card text-center">
-        <div className="card-body">
-            <div className="card-content">
-                <div className="row-container">
-                    <div className="card-title" title={title}>{title}</div>
+    <div className="card text-center musiccard">
+        <div className="card-body musiccard">
+            <div className="card-content  musiccard">
+                <div className="row-container musiccard">
+                    <div className="card-title musiccard" title={title}>{title}</div>
                 </div>
                 
-                <div className="row-container">
-                    <div className="card-label">{label}</div>
-                    <div className="empty-flexbox"></div> 
+                <div className="row-container musiccard">
+                    <div className="card-label musiccard">{label}</div>
+                    <div className="empty-flexbox musiccard"></div> 
                 </div>
                 
-                <div className="row-container">
-                    <div className="empty-div"></div>
-                    <div className='buttons-container'>
-                        <button className="select-button" onClick={selectMusic} title='Select This'>Select</button>
+                <div className="row-container musiccard">
+                    <div className="empty-div musiccard"></div>
+                    <div className='buttons-container musiccard'>
+                        <button className="select-button musiccard" onClick={selectMusic} title='Select This'>Select</button>
                         
                         <button onClick={previewMusic}>
-                            <i className={` bi ${isPlaying ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'} toggle-preview-button`} 
+                            <i className={` bi ${isPlaying ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'} toggle-preview-button musiccard`} 
                             title={`${isPlaying ? 'Pause Preview' : 'Play Preview'}`}>
                             </i>
                         </button>

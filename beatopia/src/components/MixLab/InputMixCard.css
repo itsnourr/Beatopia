@@ -1,0 +1,52 @@
+  .parent-wrapper.inputmixcard{
+    margin: 10px 20px;
+    max-width: 208px;
+    width: 211px;
+   }
+  
+   .mix-title.inputmixcard {
+    margin-top: 8px;
+    padding:4px; 
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+   }
+
+   .mix-title-inputfield.inputmixcard {
+    background: white;
+    border: 0px solid #ced4da;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 210px;
+    font-size: 1.65rem;
+    text-align: center;
+    color: #000;
+    font-weight: bold;
+    padding-bottom: 0px;
+    margin: 5px 0;
+    transition: border-color 0.3s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .mix-title-inputfield.inputmixcard::placeholder {
+    font-size: 1.65rem;
+    text-align: center;
+    color: #868e96;
+    font-weight: bold;
+    opacity: 1;
+  }
+  
+  .mix-title-inputfield.inputmixcard:focus {
+    outline: none;
+    background-color: #fff;
+    font-size: 1.65rem;
+    text-align: center;
+    color: #000;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

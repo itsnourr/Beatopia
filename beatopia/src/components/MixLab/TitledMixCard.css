@@ -1,9 +1,9 @@
- .parent-wrapper{
+ .parent-wrapper.titledmixcard {
   margin: 10px 20px;
   max-width: 208px;
  }
 
- .mix-title {
+ .mix-title.titledmixcard {
   margin-top: 8px;
   padding:4px; 
   text-align: center;

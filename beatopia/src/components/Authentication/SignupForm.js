@@ -73,7 +73,7 @@ const SignupForm = ({ }) => {
         </div>
         {error && <div className="error-message">{error}</div>} {/* Display error message */}
         <button className='submit-button' type="submit" onClick={submitSignup}>Submit</button>
-        {loading ? 'Creating Account...' : 'Submit'}
+        {loading ? 'Creating Account...' : ''}
     </div>
 
     

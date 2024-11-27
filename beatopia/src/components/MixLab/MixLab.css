@@ -1,0 +1,50 @@
+  .mixlab-inner-wrapper {
+    margin-bottom: 200px;
+  }
+  
+  .welcome-mixlab {
+    margin-top: 0px;
+    font-size: 45px;
+    margin-bottom: 50px;
+    padding-bottom: 45px;
+    border-bottom: solid 16px #6e2af5D0;
+  }
+
+  .welcome-beat-selection {
+    margin-top: 0px;
+    margin-bottom: 0px;
+   }
+
+   .welcome-sound-selection {
+    margin-top: -50px;
+    margin-bottom: 0px;
+   }
+
+   .welcome-mix-ready {
+    margin-top: -50px;
+    margin-bottom: 20px;
+   }
+
+   .mix-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+   }
+
+   .mix-submit-button{
+    transform: scale(1.4);
+    border: solid #6e2af5 4px;
+    border-radius: 20px;
+    background-color: #6e2af5C0;
+    /* margin-left: 32px; */
+    color: white;
+    padding: 4px 10px;
+    font-weight: 650;
+    font-size: 1.35em;
+    cursor: pointer;
+  }
+
+  .mix-submit-button:hover{
+    transform: scale(1.5);
+  }
