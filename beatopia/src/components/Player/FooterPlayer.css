@@ -20,7 +20,8 @@
     left: 50%; 
     transform: translateX(-50%); 
 
-    background-color: #5d21e0;
+    /* background-color: #5d21e0; */
+    background: linear-gradient(to right, #6e2af5, #2AD7F5);
     opacity: 80%;
     box-shadow: 0px -4px 10px rgba(255,255,255,1.5);
     border-radius: 40px 40px 0 0;

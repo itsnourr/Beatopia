@@ -22,7 +22,7 @@
 
    .welcome-mix-ready {
     margin-top: -50px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
    }
 
    .mix-panel {
@@ -43,7 +43,7 @@
     font-weight: 650;
     font-size: 1.35em;
     cursor: pointer;
-  }
+   }
 
   .mix-submit-button:hover{
     transform: scale(1.5);

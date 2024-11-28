@@ -1,3 +1,80 @@
+  .home-container {
+    margin-bottom: 80px;
+  }
+  
   .welcome-home{
-    margin-top: 120px;
+    margin-bottom: 36px;
+    font-size: 36px;
+  }
+
+  .quick-access-panel {
+    margin-bottom: 45px;
+  }
+
+  .grid-title {
+    margin-top: 36px;
+    color: #000;
+    margin-left: 80px;
+    font-size: 32px;
+    text-align: start;
+    margin-bottom: 20px;
+  }
+
+  .quick-access-task-button{
+    transform: scale(1.2);
+    border: solid #e2e2e2 6px; 
+    border-radius: 20px;
+    background: linear-gradient(to right, #6e2af5C0, #2AD7F5);
+    margin-left: 48px;
+    margin-right: 48px;
+    color: white;
+    padding: 8px 14px;
+    font-weight: 650;
+    font-size: 1.35em;
+    cursor: pointer;
+   }
+
+  .quick-access-task-button:hover{
+    transform: scale(1.3);
+  }
+
+  .quick-access-mixlab-button{
+    transform: scale(1.2);
+    border: solid #e2e2e2 6px;
+    border-radius: 20px;
+    background: linear-gradient(to right, #6e2af5C0, #F52A2A);
+    margin-left: 48px;
+    margin-right: 48px;
+    color: white;
+    padding: 8px 14px;
+    font-weight: 650;
+    font-size: 1.35em;
+    cursor: pointer;
+   }
+
+  .quick-access-mixlab-button:hover{
+    transform: scale(1.3);
+  }
+
+  .quick-access-mix-button{
+    transform: scale(1.2);
+    border: solid #e2e2e2 6px;
+    padding: 8px;
+    border-radius: 20px;
+    background: linear-gradient(to right, #6e2af5C0, #2AF567);
+    margin-left: 48px;
+    margin-right: 48px;
+    color: white;
+    padding: 8px 14px;
+    font-weight: 650;
+    font-size: 1.35em;
+    cursor: pointer;
+   }
+
+  .quick-access-mix-button:hover{
+    transform: scale(1.3);
+  }
+
+  .row-container.home {
+    background-color: #2AF567;
   }

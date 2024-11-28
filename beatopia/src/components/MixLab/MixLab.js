@@ -96,7 +96,7 @@ const MixLab = () => {
     return ( 
         <div className='mixlab-inner-wrapper'>
 
-            <h2 className='welcome-mixlab'> Welcome to <span className='beatopia-span'> MixLab </span> ! Choose a Beat then a Sound</h2>
+            <h2 className='welcome-mixlab'> Welcome to <span className='beatopia-span'> MixLab </span> ! Choose a <span className='beatopia-span'> Beat </span>  then a <span className='beatopia-span'> Sound </span> </h2>
 
             <h2 className='welcome-beat-selection'> Let's start ! First, select a <span className='beatopia-span'> Beat </span> of your choice</h2>
 
@@ -106,7 +106,7 @@ const MixLab = () => {
                             handleNewQuery={handleNewBeatQuery}
             />
 
-            <h2 className='welcome-sound-selection'> Now, mix the selected <em> Beat </em> with a <span className='beatopia-span'> Sound </span> of your choice</h2>
+            <h2 className='welcome-sound-selection'> Then, choose an ambient <span className='beatopia-span'> Sound </span> to mix with</h2>
 
             <SelectionPanel pool={sounds} 
                             placeholder={"Search sounds by name eg. waterfall sound"}
@@ -114,7 +114,7 @@ const MixLab = () => {
                             handleNewQuery={handleNewSoundQuery}
             />
 
-            <h2 className='welcome-mix-ready'> Magic is happening... This is how your <span className='beatopia-span'> Mix </span> currently looks like </h2>
+            <h2 className='welcome-mix-ready'> This is how your <span className='beatopia-span'> Mix </span> currently looks like : </h2>
 
             <div className='mix-panel'>
 

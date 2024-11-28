@@ -4,13 +4,19 @@ import './MusicCard.css';
 
 const MusicCard = ({ id, title, label, index }) => {
 
+    const [isSelected, setIsSelected] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
+
+    const selectMusic = () => {
+        setIsSelected(!isSelected); 
+        // inclusion in selection TO BE HANDLED
+    };
 
     const previewMusic = () => {
         setIsPlaying(!isPlaying);
     };
 
-  const selectMusic = () => {};
+  
 
   return (
     <div className="card text-center musiccard">
@@ -28,7 +34,16 @@ const MusicCard = ({ id, title, label, index }) => {
                 <div className="row-container musiccard">
                     <div className="empty-div musiccard"></div>
                     <div className='buttons-container musiccard'>
-                        <button className="select-button musiccard" onClick={selectMusic} title='Select This'>Select</button>
+
+                        <button onClick={selectMusic} 
+                            className={`${(isSelected) ? 
+                                "selected-button musiccard" : "select-button musiccard"}`}
+                            title={`${(isSelected) ? 
+                                "Selected" : "Select This"}`}>
+                            
+                            {(isSelected ? "Selected" : "Select")}
+
+                        </button>
                         
                         <button onClick={previewMusic}>
                             <i className={` bi ${isPlaying ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'} toggle-preview-button musiccard`} 
