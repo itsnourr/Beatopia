@@ -1,6 +1,6 @@
-  .overall-container{
+  .overall-container.signup{
     background: linear-gradient(to bottom, #6E2AF5, #000);
-    padding-top: 0px;
+    padding-top: 70px;
     height: 100vh;
   }
 

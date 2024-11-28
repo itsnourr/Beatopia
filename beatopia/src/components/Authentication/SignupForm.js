@@ -64,9 +64,9 @@ const SignupForm = ({ }) => {
   const backToLanding = () => {};
 
   return (
-    <div className='overall-auth-container'>
+    <div className='overall-container signup'>
         <div className='back-button-container signup'>
-          <button className='back-button' onClick={backToLanding}>← Back to Beatopia</button>
+          <button className='back-button' title='Back to Beatopia' onClick={backToLanding}>← Back to Beatopia</button>
         </div>
           <h1 className='welcome-message'>Welcome to <b>Beatopia</b></h1>
           <h4 className='intro-message'>Let's first create an account for you :</h4>

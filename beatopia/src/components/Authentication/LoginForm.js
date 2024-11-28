@@ -39,9 +39,9 @@ const LoginForm = () => {
   const backToLanding = () => {}
 
   return (
-    <div className='overall-container'>
+    <div className='overall-container login'>
         <div className='back-button-container login'>
-          <button className='back-button' onClick={backToLanding}>← Back to Beatopia</button>
+          <button className='back-button' title='Back to Beatopia' onClick={backToLanding}>← Back to Beatopia</button>
         </div>
         <h1 className='welcome-message-login'>Welcome back to <b>Beatopia</b></h1>
         <h4 className='intro-message'>We bet you've missed your mixes :)</h4>
