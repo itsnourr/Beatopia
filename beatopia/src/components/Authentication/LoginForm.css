@@ -4,7 +4,7 @@
     height: 100vh;
   }
 
-  .welcome-message{
+  .welcome-message-login{
     font-size: 4em;
     padding-top: 30px;
     padding-bottom: 24px;
@@ -41,4 +41,14 @@
     color: white;
     margin-top: 50px;
     font-size: 1em;
+  }
+
+  .back-button-container.login {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    margin-left: 40px;
+    margin-top: -40px;
+    margin-bottom: 20px;
   }

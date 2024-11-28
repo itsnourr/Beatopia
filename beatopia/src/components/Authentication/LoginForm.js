@@ -36,9 +36,14 @@ const LoginForm = () => {
     console.log('Redirecting to the password reset page...');
   };
 
+  const backToLanding = () => {}
+
   return (
     <div className='overall-container'>
-        <h1 className='welcome-message'>Welcome back to <b>Beatopia</b></h1>
+        <div className='back-button-container login'>
+          <button className='back-button' onClick={backToLanding}>← Back to Beatopia</button>
+        </div>
+        <h1 className='welcome-message-login'>Welcome back to <b>Beatopia</b></h1>
         <h4 className='intro-message'>We bet you've missed your mixes :)</h4>
         <div className="inputfields-container">
               <AuthField type={"text"} placeholder={"Username or email address"} value={loginText} onChange={handleLoginTextInput}/>
