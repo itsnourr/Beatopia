@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import AuthField from './AuthField';
 import './SignupForm.css'; 
+import { useNavigate } from 'react-router-dom';
 
 const SignupForm = ({ }) => {
     
@@ -16,6 +17,7 @@ const SignupForm = ({ }) => {
   const handlePasswordCheckInput = (e) => setCheckPassword(e.target.value);
   const [error, setError] = useState(""); 
   const [loading, setLoading] = useState(false); 
+  const navigate = useNavigate();
 
   // Buttons Configuration
   const submitSignup = async () => {
@@ -61,7 +63,7 @@ const SignupForm = ({ }) => {
     }
   };
 
-  const backToLanding = () => {};
+  const backToLanding = () => navigate('/'); 
 
   return (
     <div className='overall-container signup'>
@@ -78,7 +80,7 @@ const SignupForm = ({ }) => {
           </div>
           {error && <div className="error-message">{error}</div>} {/* Display error message */}
           <button className='submit-button' type="submit" onClick={submitSignup}>Submit</button>
-          {loading ? 'Creating Account...' : ''}
+          {loading ? <div className="loading-text">Creating Account...</div> : ''}
       </div>
 
     

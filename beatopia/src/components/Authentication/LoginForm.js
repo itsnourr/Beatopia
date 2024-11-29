@@ -3,6 +3,7 @@ import axios from 'axios';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import AuthField from './AuthField';
 import './LoginForm.css';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
     
@@ -10,6 +11,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   // const { login } = useAuth();
+  const navigate = useNavigate();
 
   
   const handleLoginTextInput = (e) => setLoginText(e.target.value);
@@ -29,14 +31,15 @@ const LoginForm = () => {
       console.log('Login successful. Redirecting...');
       window.location.href = '/home';
     } catch (error) {
-      setErrorMessage('Invalid credentials. Please try again.');
+      setErrorMessage('Invalid username or password. Please try again.');
+      setPassword(""); // Clear the password field
     }
   };
   const forgotPassword = () => {
     console.log('Redirecting to the password reset page...');
   };
 
-  const backToLanding = () => {}
+  const backToLanding = () => navigate('/');
 
   return (
     <div className='overall-container login'>
@@ -49,6 +52,11 @@ const LoginForm = () => {
               <AuthField type={"text"} placeholder={"Username or email address"} value={loginText} onChange={handleLoginTextInput}/>
               <AuthField type={"password"} placeholder={"Enter your password"} value={password} onChange={handlePasswordInput}/>
         </div>
+        {errorMessage && (
+          <div className="error-message">
+            <i className="bi bi-exclamation-circle"></i> {errorMessage}
+          </div>
+        )}
         <button className='authenticate-button' type="authenticate" onClick={authenticateLogin}>Authenticate</button>
         <p className='forgot-password'>Forgot your password? &nbsp;
             <span onClick={forgotPassword} title="Reset Password" style={{ textDecoration: 'underline', cursor: 'pointer'}}>Click Here</span>

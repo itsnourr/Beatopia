@@ -52,3 +52,13 @@
     margin-top: -40px;
     margin-bottom: 20px;
   }
+
+  .error-message {
+    color: red; 
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+  }

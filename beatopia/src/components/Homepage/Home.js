@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './Home.css'; 
+import { useNavigate } from 'react-router-dom';
 
 import StaticTaskCard from '../Kanban/StaticTaskCard';
 import TitledMixCard from '../MixLab/TitledMixCard';
 
 const Home = () => { 
+
+    const navigate = useNavigate();
 
     const recentlyPlayedMixes = [
         {
@@ -68,9 +71,9 @@ const Home = () => {
         { id: "4", title: "Plan Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },
     ];
 
-    const goToDashboard = () => {};
-    const goToMixLab = () => {};
-    const goToMyMixes = () => {};
+    const goToDashboard = () => navigate('/dashboard');
+    const goToMixLab = () => navigate('/mixlab');
+    const goToMyMixes = () => navigate('/mixes');
     
     return (
         <div className='home-container'>

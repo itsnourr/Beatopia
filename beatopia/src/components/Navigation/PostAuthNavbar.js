@@ -1,14 +1,17 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React from 'react'; 
 import './PostAuthNavbar.css';
+import { useNavigate } from 'react-router-dom';
 
 const PostAuthNavbar = () => {
 
-    const goToHome = () => {};
-    const goToDashboard = () => {};
-    const goToMixLab = () => {};
-    const goToMyMixes = () => {};
-    const goToSettings = () => {};
+    const navigate = useNavigate();
+
+    const goToHome = () => navigate('/home');
+    const goToDashboard = () => navigate('/dashboard');
+    const goToMixLab = () => navigate('/mixlab');
+    const goToMyMixes = () => navigate('/mixes');
+    const goToSettings = () => navigate('/settings');
 
   return (
     <div className='navbar-container'>

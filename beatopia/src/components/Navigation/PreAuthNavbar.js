@@ -1,11 +1,14 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React from 'react'; 
 import './PreAuthNavbar.css';
+import { useNavigate } from 'react-router-dom';
 
 const PreAuthNavbar = () => {
 
-    const goToLogin = () => {};
-    const goToSignup = () => {};
+    const navigate = useNavigate();
+
+    const goToLogin = () => navigate('/login');
+    const goToSignup = () => navigate('/register');
 
   return (
     <div className='navbar-container'>
