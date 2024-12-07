@@ -10,10 +10,8 @@ const LoginForm = () => {
   const [loginText, setLoginText] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  // const { login } = useAuth();
   const navigate = useNavigate();
 
-  
   const handleLoginTextInput = (e) => setLoginText(e.target.value);
   const handlePasswordInput = (e) => setPassword(e.target.value);
 
@@ -21,20 +19,23 @@ const LoginForm = () => {
   const authenticateLogin = async () => {
     
     try {
+      // Send the login request with username and password
       const response = await axios.post('http://localhost:5000/login', {
         username: loginText, // or email, depending on your back-end setup
         password: password
+      }, {
+        withCredentials: true, // Ensure the session cookie is sent
       });
-  
-      const token = response.data.access_token;
-      localStorage.setItem('token', token);
+      
+      
       console.log('Login successful. Redirecting...');
-      window.location.href = '/home';
+      navigate('/home'); // Redirect to home page after successful login
     } catch (error) {
       setErrorMessage('Invalid username or password. Please try again.');
       setPassword(""); // Clear the password field
     }
   };
+
   const forgotPassword = () => {
     console.log('Redirecting to the password reset page...');
   };
@@ -62,9 +63,6 @@ const LoginForm = () => {
             <span onClick={forgotPassword} title="Reset Password" style={{ textDecoration: 'underline', cursor: 'pointer'}}>Click Here</span>
         </p>
     </div>
-
-    
-    
   );
 };
 

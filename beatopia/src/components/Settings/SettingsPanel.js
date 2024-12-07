@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './SettingsPanel.css'; 
 import { useNavigate } from 'react-router-dom';
-
 import SettingsInputField from './SettingsInputField';
+import axios from 'axios';
 
 const SettingsPanel = ({ username }) => {
 
@@ -31,11 +31,15 @@ const SettingsPanel = ({ username }) => {
 
     // Danger Zone
 
-    const logout = () => {
-        // Clear authentication token
-        localStorage.removeItem('token');
-        // Redirect to the landing page
-        navigate('/');
+    const logout = async () => {
+        try {
+            await axios.post('http://localhost:5000/logout', {}, { withCredentials: true });
+    
+            
+            navigate('/');
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
     };
     const deleteAccount = () => {};
 
