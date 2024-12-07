@@ -3,6 +3,7 @@ from flask_jwt_extended import create_access_token
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import auth_blueprint
 from models import db, User 
+from datetime import timedelta
 from flask_cors import cross_origin
 
 @auth_blueprint.route('/register', methods=['POST'])
@@ -39,7 +40,7 @@ def login():
 
     # If user is found, check if the password matches
     if check_password_hash(user.password, data['password']):
-        access_token = create_access_token(identity={'id': user.id, 'username': user.username})
+        access_token = create_access_token(identity={'id': user.id, 'username': user.username}, expires_delta=timedelta(minutes=200))
         return jsonify(access_token=access_token), 200
     else:
         return jsonify({"message": "Invalid credentials"}), 401

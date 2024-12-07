@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './SettingsPanel.css'; 
+import { useNavigate } from 'react-router-dom';
 
 import SettingsInputField from './SettingsInputField';
 
@@ -18,6 +19,8 @@ const SettingsPanel = ({ username }) => {
     const handleOldPasswordInput = (e) => setOldPassword(e.target.value);
     const handleNewPasswordInput = (e) => setNewPassword(e.target.value);
 
+    const navigate = useNavigate();
+
     const submitNewUsername = () => {};
     const submitNewMailAddress = () => {};
     const submitOldPassword = () => {
@@ -28,7 +31,12 @@ const SettingsPanel = ({ username }) => {
 
     // Danger Zone
 
-    const logout = () => {};
+    const logout = () => {
+        // Clear authentication token
+        localStorage.removeItem('token');
+        // Redirect to the landing page
+        navigate('/');
+    };
     const deleteAccount = () => {};
 
     return (

@@ -14,6 +14,7 @@ import MixLabPage from './components/MixLab/MixLabPage';
 import MixesPage from './components/MyMixes/MixesPage';
 import HomePage from './components/Homepage/Homepage';
 import Dashboard from './components/Kanban/Dashboard';
+import ProtectedRoute from './components/Protected/ProtectedRoute';
 
 // <------------------------------------------------------------------>
 
@@ -24,13 +25,14 @@ const App = () => {
 
         <Routes>
             <Route path="/" element={<LandingPage/>} />
-            <Route path="/home" element={<HomePage />} />
             <Route path="/login" element={<LoginForm />} />
-            <Route path="/mixes" element={<MixesPage />} />    
-            <Route path="/mixlab" element={<MixLabPage />} />    
             <Route path="/register" element={<SignupForm />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/settings" element={<SettingsPage username={"its.nourr"} />} />    
+
+            <Route path="/home" element={<ProtectedRoute> <HomePage /> </ProtectedRoute>} />
+            <Route path="/mixes" element={<ProtectedRoute> <MixesPage /> </ProtectedRoute>} />    
+            <Route path="/mixlab" element={<ProtectedRoute> <MixLabPage /> </ProtectedRoute>} />  
+            <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
+            <Route path="/settings" element={<ProtectedRoute> <SettingsPage username={"its.nourr"} /> </ProtectedRoute>} />    
         </Routes>
 
       </div> 
