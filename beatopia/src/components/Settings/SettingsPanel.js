@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './SettingsPanel.css'; 
 import { useNavigate } from 'react-router-dom';
 import SettingsInputField from './SettingsInputField';
 import axios from 'axios';
 
-const SettingsPanel = ({ username }) => {
+const SettingsPanel = () => {
 
     const oldPasswordConfirmed = false;
     
+    const [username, setUsername] = useState('');
+    const [loading, setLoading] = useState(true);
     const [newUsername, setNewUsername] = useState("");
     const [newMailAddress, setNewMailAddress] = useState("");
     const [oldPassword, setOldPassword] = useState("");
@@ -20,6 +22,23 @@ const SettingsPanel = ({ username }) => {
     const handleNewPasswordInput = (e) => setNewPassword(e.target.value);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchUsername = async () => {
+          try {
+            const response = await axios.get('http://localhost:5000/check-session', {
+              withCredentials: true,
+            });
+            setUsername(response.data.username);
+          } catch (error) {
+            console.error('Failed to fetch username:', error.response?.data?.message || error.message);
+          } finally {
+            setLoading(false);
+          }
+        };
+
+        fetchUsername();
+    }, []);
 
     const submitNewUsername = () => {};
     const submitNewMailAddress = () => {};
@@ -42,6 +61,10 @@ const SettingsPanel = ({ username }) => {
         }
     };
     const deleteAccount = () => {};
+
+    if (loading) {
+        return <div>Loading settings...</div>;
+      }
 
     return (
         <div className='settings-panel-container'>

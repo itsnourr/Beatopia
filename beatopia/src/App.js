@@ -32,7 +32,7 @@ const App = () => {
             <Route path="/mixes" element={<ProtectedRoute> <MixesPage /> </ProtectedRoute>} />    
             <Route path="/mixlab" element={<ProtectedRoute> <MixLabPage /> </ProtectedRoute>} />  
             <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
-            <Route path="/settings" element={<ProtectedRoute> <SettingsPage username={"its.nourr"} /> </ProtectedRoute>} />    
+            <Route path="/settings" element={<ProtectedRoute> <SettingsPage/> </ProtectedRoute>} />    
         </Routes>
 
       </div> 

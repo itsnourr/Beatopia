@@ -52,7 +52,8 @@ def logout():
 @auth_blueprint.route('/check-session', methods=['GET'])
 def check_session():
     user_id = session.get('user_id')
+    username = session.get('username')
     if user_id:
-        return jsonify({"message": "Session is active", "user_id": user_id}), 200
+        return jsonify({"message": "Session is active", "user_id": user_id , "username" : username}), 200
     else:
         return jsonify({"message": "Session expired or not active"}), 401
