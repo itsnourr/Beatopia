@@ -11,7 +11,7 @@ const Dashboard = () => {
     <div className="dashboard-wrapper">
         <PostAuthNavbar/>
         <KanbanBoard/>
-        <FooterPlayer trackName={"Winter Vibes"}/>
+        <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/>
     </div>
   );
 };

@@ -11,7 +11,7 @@ const MixesPage = () => {
     <div className="mixes-page-wrapper">
         <PostAuthNavbar/>
         <MyMixes/>
-        <FooterPlayer trackName={"Winter Vibes"}/>
+        <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/>
     </div> 
   );
 };

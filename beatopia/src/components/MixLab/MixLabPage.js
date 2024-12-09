@@ -11,7 +11,7 @@ const MixLabPage = () => {
     <div className="mixlab-page-wrapper">
         <PostAuthNavbar/>
         <MixLab/>
-        <FooterPlayer trackName={"Winter Vibes"}/>
+        <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/>
     </div> 
   );
 };

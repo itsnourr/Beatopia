@@ -1,12 +1,24 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './FooterPlayer.css';
 
-const FooterPlayer = ({trackName}) => {
+const FooterPlayer = ({trackName, audioPath}) => {
+
+    const audioRef = useRef(null);
+    const audioSrc = audioPath;
+
     const [isPlaying, setIsPlaying] = useState(false);
 
     const togglePlayPause = () => {
-        setIsPlaying(!isPlaying);
+        if(audioRef.current){
+            if(isPlaying) {
+                audioRef.current.pause();
+            }
+            else{
+                audioRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
     };
 
     const editPressed = () => {};
@@ -33,6 +45,7 @@ const FooterPlayer = ({trackName}) => {
             </button>
         </div>
 
+        <audio ref={audioRef} src={audioSrc} loop/>
         
     </div>
   );

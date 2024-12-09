@@ -11,7 +11,7 @@ const Homepage = () => {
     <div className="home-page-wrapper">
         <PostAuthNavbar/>
         <Home/>
-        <FooterPlayer trackName={"Winter Vibes"}/>
+        <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/>
     </div> 
   );
 };
