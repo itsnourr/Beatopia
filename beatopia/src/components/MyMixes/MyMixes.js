@@ -5,50 +5,57 @@ import './MyMixes.css';
 import SearchBar from '../Navigation/SearchBar';
 import TitledMixCard from '../MixLab/TitledMixCard';
 
-const MyMixes = () => {
+const MyMixes = ({ updateFooterPlayer }) => {
 
     const mixes = [
         {
             id: 1,
             title: "Study Beats",
             beat: "Chill rhythm",
-            sound: "Chilled lo-fi"
+            sound: "Chilled lo-fi",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 2,
             title: "Morning Drive",
             beat: "Upbeat tempo",
-            sound: "Energetic pop"
+            sound: "Energetic pop",
+            audioPath: `${process.env.PUBLIC_URL}/Sicily.wav`
         },
         {
             id: 3,
             title: "Jazz Nights",
             beat: "Smooth jazz",
-            sound: "Sax and piano"
+            sound: "Sax and piano",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 4,
             title: "Indie Vibes",
             beat: "Guitar melodies",
-            sound: "Soft indie"
+            sound: "Soft indie",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 5,
             title: "Deep House Grooves",
             beat: "Steady rhythm",
-            sound: "House beats"
+            sound: "House beats",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 6,
             title: "Cinematic Mood",
             beat: "Atmospheric sound",
-            sound: "Orchestral scores"
+            sound: "Orchestral scores",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 7,
             title: "Rock Classics",
             beat: "High energy",
-            sound: "Electric guitars"
+            sound: "Electric guitars",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         }
     ];
     
@@ -84,6 +91,8 @@ const MyMixes = () => {
                                             title={mix.title}
                                             beat={mix.beat}
                                             sound={mix.sound}
+                                            audioPath={mix.audioPath}
+                                            updateFooterPlayer={updateFooterPlayer}
                                             index={index}
                                         />
                                     </div>

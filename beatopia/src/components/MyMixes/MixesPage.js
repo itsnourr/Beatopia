@@ -5,13 +5,13 @@ import MyMixes from './MyMixes';
 import FooterPlayer from '../Player/FooterPlayer';
 import './MixesPage.css';
 
-const MixesPage = () => { 
+const MixesPage = ({updateFooterPlayer}) => { 
 
   return (
     <div className="mixes-page-wrapper">
         <PostAuthNavbar/>
-        <MyMixes/>
-        <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/>
+        <MyMixes updateFooterPlayer={updateFooterPlayer}/>
+        {/* <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/> */}
     </div> 
   );
 };

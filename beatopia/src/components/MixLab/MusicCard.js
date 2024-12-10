@@ -1,19 +1,34 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import React, { useState } from 'react'; 
+import React, { useState, useRef } from 'react'; 
 import './MusicCard.css';
 
-const MusicCard = ({ id, title, label, index }) => {
+const MusicCard = ({ id, title, label, audioPath, index }) => {
 
-    const [isSelected, setIsSelected] = useState(false);
+    const [isSelected, setIsSelected] = useState(false); {/* to configure*/}
     const [isPlaying, setIsPlaying] = useState(false);
+
+    const audioRef = useRef(null);
+    const audioSrc = audioPath;
 
     const selectMusic = () => {
         setIsSelected(!isSelected); 
         // inclusion in selection TO BE HANDLED
     };
 
+    const handleAudioEnded = () => {
+        setIsPlaying(false);
+    };
+
     const previewMusic = () => {
-        setIsPlaying(!isPlaying);
+        if(audioRef.current){
+            if(isPlaying) {
+                audioRef.current.pause();
+            }
+            else{
+                audioRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
     };
 
   
@@ -54,6 +69,7 @@ const MusicCard = ({ id, title, label, index }) => {
                 </div>
             </div>
         </div>
+        <audio ref={audioRef} src={audioSrc} onEnded={handleAudioEnded}/>
     </div>
   );
 };

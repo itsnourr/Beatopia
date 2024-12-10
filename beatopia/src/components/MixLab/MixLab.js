@@ -13,37 +13,44 @@ const MixLab = () => {
         {
             id: 1,
             title: "Study Beats",
-            label: "Chilled lo-fi"
+            label: "Chilled lo-fi",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 2,
             title: "Morning Drive",
-            label: "Energetic pop"
+            label: "Energetic pop",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 3,
             title: "Jazz Nights",
-            label: "Sax and piano"
+            label: "Sax and piano",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 4,
             title: "Indie Vibes",
-            label: "Soft indie"
+            label: "Soft indie",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 5,
             title: "Deep House Grooves",
-            label: "House beats"
+            label: "House beats",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 6,
             title: "Cinematic Mood",
-            label: "Orchestral scores"
+            label: "Orchestral scores",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 7,
             title: "Rock Classics",
-            label: "Electric guitars"
+            label: "Electric guitars",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         }
     ];
 
@@ -51,37 +58,44 @@ const MixLab = () => {
         {
             id: 1,
             title: "Study Beats",
-            label: "Chilled lo-fi"
+            label: "Chilled lo-fi",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 2,
             title: "Morning Drive",
-            label: "Energetic pop"
+            label: "Energetic pop",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 3,
             title: "Jazz Nights",
-            label: "Sax and piano"
+            label: "Sax and piano",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 4,
             title: "Indie Vibes",
-            label: "Soft indie"
+            label: "Soft indie",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 5,
             title: "Deep House Grooves",
-            label: "House beats"
+            label: "House beats",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 6,
             title: "Cinematic Mood",
-            label: "Orchestral scores"
+            label: "Orchestral scores",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 7,
             title: "Rock Classics",
-            label: "Electric guitars"
+            label: "Electric guitars",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         }
     ];
     

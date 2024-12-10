@@ -5,13 +5,13 @@ import KanbanBoard from './KanbanBoard';
 import FooterPlayer from '../Player/FooterPlayer';
 import './Dashboard.css';
 
-const Dashboard = () => { 
+const Dashboard = ({updateFooterPlayer}) => { 
 
   return (
     <div className="dashboard-wrapper">
         <PostAuthNavbar/>
         <KanbanBoard/>
-        <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/>
+        {/* <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/> */}
     </div>
   );
 };

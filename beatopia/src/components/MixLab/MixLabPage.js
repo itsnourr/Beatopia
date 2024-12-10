@@ -5,13 +5,13 @@ import MixLab from './MixLab';
 import FooterPlayer from '../Player/FooterPlayer';
 import './MixLabPage.css';
 
-const MixLabPage = () => { 
+const MixLabPage = ({updateFooterPlayer}) => { 
 
   return (
     <div className="mixlab-page-wrapper">
         <PostAuthNavbar/>
         <MixLab/>
-        <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/>
+        {/* <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/> */}
     </div> 
   );
 };

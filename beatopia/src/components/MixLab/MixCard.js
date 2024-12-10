@@ -2,12 +2,14 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import React, { useState } from 'react'; 
 import './MixCard.css';
 
-const MixCard = ({ id, beat, sound, index }) => { 
-
+const MixCard = ({ beat, sound, title, audioPath, updateFooterPlayer }) => { 
     const [isPlaying, setIsPlaying] = useState(false);
-
-    const playMix = () => {
-        setIsPlaying(!isPlaying);
+  
+    const loadMix = () => {
+      setIsPlaying(!isPlaying);
+      if (!isPlaying) {
+        updateFooterPlayer(title, audioPath, false);  // Update the footer player with the current mix
+      }
     };
 
     const editMix = () => {};
@@ -30,7 +32,7 @@ const MixCard = ({ id, beat, sound, index }) => {
 
                 <div className='row-container mixcard'> 
                     <button className="edit-mix-button mixcard" onClick={editMix} title='Edit Mix'>Edit Mix</button>               
-                    <button className="play-now-button mixcard" onClick={playMix} title='Play Now'>Play Now</button>               
+                    <button className="play-now-button mixcard" onClick={loadMix} title='Play Now'>Load Mix</button>               
                 </div>
                 
             </div>

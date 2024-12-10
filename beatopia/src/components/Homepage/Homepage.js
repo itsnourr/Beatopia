@@ -5,13 +5,13 @@ import Home from './Home';
 import FooterPlayer from '../Player/FooterPlayer';
 import './Homepage.css';
 
-const Homepage = () => { 
+const Homepage = ({updateFooterPlayer}) => { 
 
   return (
     <div className="home-page-wrapper">
         <PostAuthNavbar/>
         <Home/>
-        <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/>
+        {/* <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/> */}
     </div> 
   );
 };

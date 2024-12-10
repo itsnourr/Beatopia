@@ -12,7 +12,7 @@ const SelectionPanel = ({ pool, placeholder, newQuery, handleNewQuery }) => {
     return (
         <div className='settings-panel-container'>
 
-            <div className='my-mixes-search-bar'> {/* fix styling */}
+            <div className='my-mixes-search-bar'> 
                 
                 <SearchBar placeholder={placeholder}
                             value={newQuery}
@@ -21,7 +21,7 @@ const SelectionPanel = ({ pool, placeholder, newQuery, handleNewQuery }) => {
 
             </div>
 
-            <div className='my-mixes-grid'> {/* fix styling */}
+            <div className='my-mixes-grid'>
 
                 <div class="container">
                     <div class="row">
@@ -35,6 +35,7 @@ const SelectionPanel = ({ pool, placeholder, newQuery, handleNewQuery }) => {
                                             id={item.id}
                                             title={item.title}
                                             label={item.label}
+                                            audioPath={item.audioPath}
                                             index={index}
                                         />
                                     </div>
