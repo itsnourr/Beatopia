@@ -54,41 +54,41 @@ const App = () => {
           <Route
             path="/home"
             element={
-              // <ProtectedRoute>
+              <ProtectedRoute>
                 <HomePage updateFooterPlayer={updateFooterPlayer} />
-              // </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/mixes"
             element={
-              // <ProtectedRoute>
+              <ProtectedRoute>
                 <MixesPage updateFooterPlayer={updateFooterPlayer} />
-              // </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/mixlab"
             element={
-              // <ProtectedRoute>
+              <ProtectedRoute>
                 <MixLabPage updateFooterPlayer={updateFooterPlayer} />
-              // </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/dashboard"
             element={
-              // <ProtectedRoute>
+              <ProtectedRoute>
                 <Dashboard updateFooterPlayer={updateFooterPlayer} />
-              // </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/settings"
             element={
-              // <ProtectedRoute>
+              <ProtectedRoute>
                 <SettingsPage updateFooterPlayer={updateFooterPlayer} />
-              // </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
         </Routes>
