@@ -1,10 +1,11 @@
-from flask import Flask,request
+from flask import Flask,request, send_from_directory
 from auth import auth_blueprint
 from routes import protected_blueprint
 from db import db,migrate
 from flask_cors import CORS
 from flask_session import Session
 from utils.scheduler import init_scheduler
+import os
 
 def create_app():
     app = Flask(__name__)
@@ -39,9 +40,21 @@ def create_app():
     return app
 
 
+app = create_app()
 
+BEATS_DIRECTORY = os.path.join(os.path.dirname(__file__), 'audio', 'beats')
+SOUNDS_DIRECTORY = os.path.join(os.path.dirname(__file__), 'audio', 'sounds')
+
+@app.route('/audio/beat/<filename>')
+def serve_beat(filename):
+    """Serve beat audio files"""
+    return send_from_directory(BEATS_DIRECTORY, filename)
+
+@app.route('/audio/sound/<filename>')
+def serve_sound(filename):
+    """Serve sound audio files"""
+    return send_from_directory(SOUNDS_DIRECTORY, filename)
 
 if __name__ == '__main__':
-    app = create_app()
     scheduler = init_scheduler(app)
     app.run(debug=True, port=5000,ssl_context=('cert.pem', 'key.pem'))

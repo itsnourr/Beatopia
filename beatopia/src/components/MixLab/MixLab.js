@@ -24,19 +24,32 @@ const MixLab = () => {
             try {
                 const beatsResponse = await axios.get("http://localhost:5000/api/beats", { withCredentials: true });
                 const soundsResponse = await axios.get("http://localhost:5000/api/sounds", { withCredentials: true });
-
-                setBeats(beatsResponse.data);
-                setSounds(soundsResponse.data);
-
-                console.log("Fetched Beats:", beatsResponse.data);
-                console.log("Fetched Sounds:", soundsResponse.data);
+    
+                // Update beats with the full URL for the audio path
+                const updatedBeats = beatsResponse.data.map((beat) => ({
+                    ...beat,
+                    audioPath: `http://localhost:5000/audio/beat/${beat.audioPath}`, // Append the URL for beats
+                }));
+    
+                // Update sounds with the full URL for the audio path
+                const updatedSounds = soundsResponse.data.map((sound) => ({
+                    ...sound,
+                    audioPath: `http://localhost:5000/audio/sound/${sound.audioPath}`, // Append the URL for sounds
+                }));
+                
+                setBeats(updatedBeats);
+                setSounds(updatedSounds);
+    
+                console.log("Fetched Beats:", updatedBeats);
+                console.log("Fetched Sounds:", updatedSounds);
             } catch (error) {
                 console.error("Error fetching beats or sounds:", error);
             }
         };
-
+    
         fetchBeatsAndSounds();
     }, []);
+    
 
     
     const [newBeatQuery, setNewBeatQuery] = useState("");
