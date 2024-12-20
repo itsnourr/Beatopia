@@ -60,9 +60,6 @@ const MixLab = () => {
 
     const createMix = async () => {
         try {
-            //const selectedBeat = beats.find((beat) => beat.title === "My Beat"); // Replace with actual selection logic
-            //const selectedSound = sounds.find((sound) => sound.title === "My Sound"); // Replace with actual selection logic
-    
             if (!selectedBeat || !selectedSound) {
                 alert("Please select a beat and a sound.");
                 return;
@@ -74,23 +71,19 @@ const MixLab = () => {
                     beatPath: selectedBeat.audioPath,
                     soundPath: selectedSound.audioPath,
                 },
-                {withCredentials:true},
-                { responseType: 'blob' } // Receive the file as a blob
+                { withCredentials: true } // No need to receive audio as a blob
             );
     
-            // Create a downloadable link for the mixed audio
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'mixed_audio.mp3');
-            document.body.appendChild(link);
-            link.click();
-            link.parentNode.removeChild(link);
+            // Handle success response
+            alert("Mix created successfully! Mix ID: " + response.data.mix_id);
+        
         } catch (error) {
             console.error("Mix creation failed:", error);
             alert("An error occurred while creating the mix. Please try again.");
         }
-    };;
+    };
+    
+    
         
     return ( 
         <div className='mixlab-inner-wrapper'>

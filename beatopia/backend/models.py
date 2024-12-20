@@ -29,6 +29,7 @@ class Beat(db.Model):
     title = db.Column(db.String(100), nullable=False)  # Title of the beat
     file_path = db.Column(db.String(255), nullable=False)  # Path to the audio file
     duration = db.Column(db.Float)  # Duration of the beat in seconds
+    description = db.Column(db.String(255), nullable=True)
 
     # Relationships
     mixes = db.relationship('Mix', backref='beat', lazy=True)  # One-to-many with Mix
@@ -53,7 +54,6 @@ class Mix(db.Model):
     title = db.Column(db.String(100), nullable=False)  # Title of the mix
     beat_id = db.Column(db.Integer, db.ForeignKey('beats.id'), nullable=False)  # Foreign key to Beat
     sound_id = db.Column(db.Integer, db.ForeignKey('sounds.id'), nullable=False)  # Foreign key to Sound
-    file_path = db.Column(db.String(255), nullable=False)  # Path to the mixed audio file
     created_at = db.Column(db.DateTime, default=db.func.now())  # Timestamp
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 

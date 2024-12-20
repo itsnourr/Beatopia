@@ -1,53 +1,65 @@
-from flask import request, jsonify, send_file, current_app
+from flask import request, jsonify
 from pydub import AudioSegment
-from pydub.playback import play
 from io import BytesIO
 from . import protected_blueprint
 import os
+import db
+from models import *
 
-# Set the base directory for audio files
-BASE_AUDIO_DIR = os.path.join(os.path.dirname(__file__), 'audio')
-
-# Access beats or sounds
-BEAT_DIR = os.path.join(BASE_AUDIO_DIR, 'beats')
-SOUND_DIR = os.path.join(BASE_AUDIO_DIR, 'sounds')
-
-
-AUDIO_FOLDER = os.path.join(os.path.dirname(__file__), 'audio')
-
+# Calculate the base directory for audio files
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # Points to `backend`
+AUDIO_FOLDER = os.path.join(BASE_DIR, 'audio')  # Points to `backend/audio`
 
 @protected_blueprint.route('/create_mix', methods=['POST'])
 def create_mix():
     try:
-        beat_filename = request.json.get('beatPath')
-        sound_filename = request.json.get('soundPath')
+        # Get the beat and sound paths from the request
+        beat_url = request.json.get('beatPath')
+        sound_url = request.json.get('soundPath')
 
-        if not beat_filename or not sound_filename:
+        if not beat_url or not sound_url:
             return jsonify({"error": "Please provide both beat and sound paths."}), 400
 
-        beat_path = os.path.join(AUDIO_FOLDER, beat_filename.lstrip('/'))  # Remove leading slash if present
-        sound_path = os.path.join(AUDIO_FOLDER, sound_filename.lstrip('/'))
+        # Extract file names from URLs
+        beat_filename = os.path.basename(beat_url)
+        sound_filename = os.path.basename(sound_url)
 
+        # Construct file system paths (as you did earlier)
+        beat_path = os.path.join(AUDIO_FOLDER, 'beats', beat_filename)
+        sound_path = os.path.join(AUDIO_FOLDER, 'sounds', sound_filename)
 
+        # Check if files exist on the filesystem
         if not os.path.exists(beat_path):
             return jsonify({"error": f"File not found: {beat_filename}"}), 404
         if not os.path.exists(sound_path):
             return jsonify({"error": f"File not found: {sound_filename}"}), 404
 
-        # Load the audio files
-        beat = AudioSegment.from_file(beat_path , format="wav")
-        sound = AudioSegment.from_file(sound_path , format="wav")
 
-        # Overlay sound on beat
-        mixed_audio = beat.overlay(sound)
+        # Query the Beat and Sound models by their file paths to get the ids
+        beat = Beat.query.filter_by(file_path=beat_filename).first()
+        sound = Sound.query.filter_by(file_path=sound_filename).first()
 
-        # Save the mixed audio to a BytesIO buffer
-        buffer = BytesIO()
-        mixed_audio.export(buffer, format="mp3")
-        buffer.seek(0)
+        if not beat:
+            return jsonify({"error": f"Beat not found for file path: {beat_url}"}), 404
+        if not sound:
+            return jsonify({"error": f"Sound not found for file path: {sound_url}"}), 404
 
-        return send_file(buffer, as_attachment=True, download_name="mixed_audio.mp3", mimetype="audio/mpeg")
-        
+        # Now you have the beat and sound objects, and their ids are available
+        beat_id = beat.id
+        sound_id = sound.id
+
+        # Create a new mix record in the database
+        new_mix = Mix(
+            title="My Mix",  # You can modify this to generate a unique title
+            beat_id=beat_id,
+            sound_id=sound_id,
+            user_id=1  # You should get the user_id from the current session or authentication
+        )
+        db.session.add(new_mix)
+        db.session.commit()
+
+        # Return a success response
+        return jsonify({"message": "Mix created successfully"}), 201
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
