@@ -10,7 +10,7 @@ const Homepage = ({updateFooterPlayer}) => {
   return (
     <div className="home-page-wrapper">
         <PostAuthNavbar/>
-        <Home/>
+        <Home updateFooterPlayer={updateFooterPlayer}/>
         {/* <FooterPlayer trackName={"RnB"} audioPath={`${process.env.PUBLIC_URL}/RnB.wav`}/> */}
     </div> 
   );
