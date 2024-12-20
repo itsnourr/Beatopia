@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './MixLab.css'; 
 
@@ -7,97 +7,37 @@ import TitledMixCard from '../MixLab/TitledMixCard';
 import SelectionPanel from './SelectionPanel';
 import InputMixCard from './InputMixCard';
 
+import axios from 'axios';
+
 const MixLab = () => {
+    const [beats, setBeats] = useState([]);
+    const [sounds, setSounds] = useState([]);
+    const [selectedBeat, setSelectedBeat] = useState(null);
+    const [selectedSound, setSelectedSound] = useState(null);
+    
 
-    const beats = [
-        {
-            id: 1,
-            title: "Study Beats",
-            label: "Chilled lo-fi",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 2,
-            title: "Morning Drive",
-            label: "Energetic pop",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 3,
-            title: "Jazz Nights",
-            label: "Sax and piano",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 4,
-            title: "Indie Vibes",
-            label: "Soft indie",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 5,
-            title: "Deep House Grooves",
-            label: "House beats",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 6,
-            title: "Cinematic Mood",
-            label: "Orchestral scores",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 7,
-            title: "Rock Classics",
-            label: "Electric guitars",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        }
-    ];
+    const handleBeatSelection = (beat) => setSelectedBeat(beat);
+    const handleSoundSelection = (sound) => setSelectedSound(sound);
 
-    const sounds = [
-        {
-            id: 1,
-            title: "Study Beats",
-            label: "Chilled lo-fi",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 2,
-            title: "Morning Drive",
-            label: "Energetic pop",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 3,
-            title: "Jazz Nights",
-            label: "Sax and piano",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 4,
-            title: "Indie Vibes",
-            label: "Soft indie",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 5,
-            title: "Deep House Grooves",
-            label: "House beats",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 6,
-            title: "Cinematic Mood",
-            label: "Orchestral scores",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 7,
-            title: "Rock Classics",
-            label: "Electric guitars",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        }
-    ];
+    useEffect(() => {
+        const fetchBeatsAndSounds = async () => {
+            try {
+                const beatsResponse = await axios.get("http://localhost:5000/api/beats", { withCredentials: true });
+                const soundsResponse = await axios.get("http://localhost:5000/api/sounds", { withCredentials: true });
+
+                setBeats(beatsResponse.data);
+                setSounds(soundsResponse.data);
+
+                console.log("Fetched Beats:", beatsResponse.data);
+                console.log("Fetched Sounds:", soundsResponse.data);
+            } catch (error) {
+                console.error("Error fetching beats or sounds:", error);
+            }
+        };
+
+        fetchBeatsAndSounds();
+    }, []);
+
     
     const [newBeatQuery, setNewBeatQuery] = useState("");
     const [newSoundQuery, setNewSoundQuery] = useState("");
@@ -105,7 +45,39 @@ const MixLab = () => {
     const handleNewBeatQuery = (e) => setNewBeatQuery(e.target.value);
     const handleNewSoundQuery = (e) => setNewSoundQuery(e.target.value);
 
-    const createMix = () => {};
+    const createMix = async () => {
+        try {
+            //const selectedBeat = beats.find((beat) => beat.title === "My Beat"); // Replace with actual selection logic
+            //const selectedSound = sounds.find((sound) => sound.title === "My Sound"); // Replace with actual selection logic
+    
+            if (!selectedBeat || !selectedSound) {
+                alert("Please select a beat and a sound.");
+                return;
+            }
+    
+            const response = await axios.post(
+                'http://localhost:5000/api/create_mix',
+                {
+                    beatPath: selectedBeat.audioPath,
+                    soundPath: selectedSound.audioPath,
+                },
+                {withCredentials:true},
+                { responseType: 'blob' } // Receive the file as a blob
+            );
+    
+            // Create a downloadable link for the mixed audio
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'mixed_audio.mp3');
+            document.body.appendChild(link);
+            link.click();
+            link.parentNode.removeChild(link);
+        } catch (error) {
+            console.error("Mix creation failed:", error);
+            alert("An error occurred while creating the mix. Please try again.");
+        }
+    };;
         
     return ( 
         <div className='mixlab-inner-wrapper'>
@@ -118,6 +90,7 @@ const MixLab = () => {
                             placeholder={"Search beats by name eg. lo-fi beat"}
                             newQuery={newBeatQuery}
                             handleNewQuery={handleNewBeatQuery}
+                            onItemSelect={handleBeatSelection}
             />
 
             <h2 className='welcome-sound-selection'> Then, choose an ambient <span className='beatopia-span'> Sound </span> to mix with</h2>
@@ -126,13 +99,18 @@ const MixLab = () => {
                             placeholder={"Search sounds by name eg. waterfall sound"}
                             newQuery={newSoundQuery}
                             handleNewQuery={handleNewSoundQuery}
+                            onItemSelect={handleSoundSelection}
             />
 
             <h2 className='welcome-mix-ready'> This is how your <span className='beatopia-span'> Mix </span> currently looks like : </h2>
 
             <div className='mix-panel'>
 
-                <InputMixCard beat={"My Beat"} sound={"My Sound"}/>
+                <InputMixCard id="123"
+                    initialTitle="My Mix"
+                    beat={selectedBeat} // Ensure this is an object with required fields.
+                    sound={selectedSound} // Same here.
+                    index={1}/>
 
             </div>
 

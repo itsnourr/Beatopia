@@ -18,16 +18,16 @@ const MixCard = ({ beat, sound, title, audioPath, updateFooterPlayer }) => {
     <div className="card text-center mixcard">
         <div className="card-body mixcard">
             <div className='card-image mixcard'>
-                <img src={`${process.env.PUBLIC_URL}/mix-cover.png`} alt="Card" />
+                <img src={`${process.env.PUBLIC_URL}/mix-cover.png`} alt="Card" />  
             </div>
             <div className="card-content mixcard">
 
                 <div>
-                    <div className="card-detail mixcard" title={beat}><span className='span-emphasis mixcard'>B /</span> {beat}</div>
+                  <div className="card-detail mixcard" title={beat && beat.title ? beat.title : ""}><span className='span-emphasis mixcard'>B /</span> {beat && beat.title ? beat.title : ""}</div>
                 </div>
                 
                 <div>
-                    <div className="card-detail mixcard" title={sound}><span className='span-emphasis mixcard'>S /</span> {sound}</div>
+                  <div className="card-detail mixcard" title={sound && sound.title ? sound.title : ""}><span className='span-emphasis mixcard'>S /</span> {sound && sound.title ? sound.title : ""}</div>
                 </div>
 
                 <div className='row-container mixcard'> 

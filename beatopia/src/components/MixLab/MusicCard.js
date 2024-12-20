@@ -2,18 +2,13 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import React, { useState, useRef } from 'react'; 
 import './MusicCard.css';
 
-const MusicCard = ({ id, title, label, audioPath, index }) => {
+const MusicCard = ({ id, title, label, audioPath ,isSelected, onSelect}) => {
 
-    const [isSelected, setIsSelected] = useState(false); {/* to configure*/}
     const [isPlaying, setIsPlaying] = useState(false);
 
     const audioRef = useRef(null);
     const audioSrc = audioPath;
 
-    const selectMusic = () => {
-        setIsSelected(!isSelected); 
-        // inclusion in selection TO BE HANDLED
-    };
 
     const handleAudioEnded = () => {
         setIsPlaying(false);
@@ -50,7 +45,7 @@ const MusicCard = ({ id, title, label, audioPath, index }) => {
                     <div className="empty-div musiccard"></div>
                     <div className='buttons-container musiccard'>
 
-                        <button onClick={selectMusic} 
+                        <button onClick={() => onSelect()} 
                             className={`${(isSelected) ? 
                                 "selected-button musiccard" : "select-button musiccard"}`}
                             title={`${(isSelected) ? 
