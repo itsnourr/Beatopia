@@ -107,8 +107,8 @@ const Home = ({ updateFooterPlayer }) => {
 
                         {soonDueTasks.length > 0 ? (
                                 soonDueTasks.map((task, index) => (
-                                    
-                                    <div class="col-md-3 col-sm-6 col-12 mb-3">
+            
+                                    <div key={task.id} className="col-md-3 col-sm-6 col-12 mb-3">
                                         <StaticTaskCard  
                                              key={task.id} 
                                             id={task.id} 
@@ -144,7 +144,7 @@ const Home = ({ updateFooterPlayer }) => {
 
                         {recentlyPlayedMixes.length > 0 ? (
                                 recentlyPlayedMixes.map((mix, index) => (
-                                    <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                    <div key={mix.id} className="col-md-3 col-sm-6 col-12 mb-3">
                                         <TitledMixCard
                                             key={mix.id}
                                             id={mix.id}
@@ -179,7 +179,7 @@ const Home = ({ updateFooterPlayer }) => {
 
                         {mostPlayedMixes.length > 0 ? (
                                 mostPlayedMixes.map((mix, index) => (
-                                    <div class="col-md-3 col-sm-6 col-12 mb-3">
+                                    <div key={mix.id} className="col-md-3 col-sm-6 col-12 mb-3">
                                         <TitledMixCard
                                             key={mix.id}
                                             id={mix.id}
