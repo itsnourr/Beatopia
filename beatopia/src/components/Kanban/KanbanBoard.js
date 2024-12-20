@@ -38,10 +38,10 @@ const KanbanBoard = () => {
     }
   });
   
-
   const onDragEnd = (result) => {
     const { source, destination } = result;
 
+    // If dropped outside the board, do nothing
     if (!destination) return;
 
     // If the task is dropped in the same position, do nothing
@@ -52,42 +52,28 @@ const KanbanBoard = () => {
     const sourceColumn = columns[source.droppableId];
     const destColumn = columns[destination.droppableId];
 
-    // If moving within the same column
-    if (source.droppableId === destination.droppableId) {
-        const updatedTasks = Array.from(sourceColumn.tasks);
-        const [movedTask] = updatedTasks.splice(source.index, 1);
-        updatedTasks.splice(destination.index, 0, movedTask);
+    const sourceTasks = Array.from(sourceColumn.tasks);
+    const destTasks = Array.from(destColumn.tasks);
+    const [movedTask] = sourceTasks.splice(source.index, 1);
 
-        const updatedTask = destination.droppableId === "done-column-id"
-            ? { ...movedTask, done: true }
-            : { ...movedTask, done: false };
+    // If moving between columns, add the task to the destination column
+    destTasks.splice(destination.index, 0, movedTask);
 
-        setColumns({
-            ...columns,
-            [source.droppableId]: { ...sourceColumn, tasks: updatedTasks },
-        });
-
+    // Update 'done' status if the task is moved to the "Done" column
+    if (destination.droppableId === "done") {
+        movedTask.done = true;
     } else {
-        // Moving between columns
-        const sourceTasks = Array.from(sourceColumn.tasks);
-        const destTasks = Array.from(destColumn.tasks);
-        const [movedTask] = sourceTasks.splice(source.index, 1);
-
-        // Update the 'done' attribute if moving to the 'Done' column
-        const updatedTask = destination.droppableId === "done-column-id"
-            ? { ...movedTask, done: true }
-            : { ...movedTask, done: false };
-
-        destTasks.splice(destination.index, 0, updatedTask);
-
-        setColumns({
-            ...columns,
-            [source.droppableId]: { ...sourceColumn, tasks: sourceTasks },
-            [destination.droppableId]: { ...destColumn, tasks: destTasks },
-        });
+        movedTask.done = false;
     }
-  };
-  
+
+    // Update state with the new task lists in both columns
+    setColumns({
+        ...columns,
+        [source.droppableId]: { ...sourceColumn, tasks: sourceTasks },
+        [destination.droppableId]: { ...destColumn, tasks: destTasks },
+    });
+};
+
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>

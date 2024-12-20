@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import StaticTaskCard from '../Kanban/StaticTaskCard';
 import TitledMixCard from '../MixLab/TitledMixCard';
 
-const Home = () => { 
+const Home = ({ updateFooterPlayer }) => { 
 
     const navigate = useNavigate();
 
@@ -15,25 +15,29 @@ const Home = () => {
             id: 1,
             title: "Study Beats",
             beat: "Chill rhythm",
-            sound: "Chilled lo-fi"
+            sound: "Chilled lo-fi",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 2,
             title: "Morning Drive",
             beat: "Upbeat tempo",
-            sound: "Energetic pop"
+            sound: "Energetic pop",
+            audioPath: `${process.env.PUBLIC_URL}/Sicily.wav`
         },
         {
             id: 3,
             title: "Jazz Nights",
             beat: "Smooth jazz",
-            sound: "Sax and piano"
+            sound: "Sax and piano",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 4,
             title: "Indie Vibes",
             beat: "Guitar melodies",
-            sound: "Soft indie"
+            sound: "Soft indie",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         }
     ];
 
@@ -42,25 +46,29 @@ const Home = () => {
             id: 1,
             title: "Study Beats",
             beat: "Chill rhythm",
-            sound: "Chilled lo-fi"
+            sound: "Chilled lo-fi",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 2,
             title: "Morning Drive",
             beat: "Upbeat tempo",
-            sound: "Energetic pop"
+            sound: "Energetic pop",
+            audioPath: `${process.env.PUBLIC_URL}/Sicily.wav`
         },
         {
             id: 3,
             title: "Jazz Nights",
             beat: "Smooth jazz",
-            sound: "Sax and piano"
+            sound: "Sax and piano",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         },
         {
             id: 4,
             title: "Indie Vibes",
             beat: "Guitar melodies",
-            sound: "Soft indie"
+            sound: "Soft indie",
+            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
         }
     ];
 
@@ -143,6 +151,8 @@ const Home = () => {
                                             title={mix.title}
                                             beat={mix.beat}
                                             sound={mix.sound}
+                                            audioPath={mix.audioPath}
+                                            updateFooterPlayer={updateFooterPlayer}
                                             index={index}
                                         />
                                     </div>
@@ -176,6 +186,8 @@ const Home = () => {
                                             title={mix.title}
                                             beat={mix.beat}
                                             sound={mix.sound}
+                                            audioPath={mix.audioPath}
+                                            updateFooterPlayer={updateFooterPlayer}
                                             index={index}
                                         />
                                     </div>
