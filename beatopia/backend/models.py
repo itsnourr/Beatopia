@@ -54,6 +54,7 @@ class Mix(db.Model):
     title = db.Column(db.String(100), nullable=False)  # Title of the mix
     beat_id = db.Column(db.Integer, db.ForeignKey('beats.id'), nullable=False)  # Foreign key to Beat
     sound_id = db.Column(db.Integer, db.ForeignKey('sounds.id'), nullable=False)  # Foreign key to Sound
+    file_path = db.Column(db.String(255), nullable=False)  # Path to the mixed audio file
     created_at = db.Column(db.DateTime, default=db.func.now())  # Timestamp
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 

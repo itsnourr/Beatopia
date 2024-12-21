@@ -10,6 +10,7 @@ from models import *
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # Points to `backend`
 AUDIO_FOLDER = os.path.join(BASE_DIR, 'audio')  # Points to `backend/audio`
 
+
 @protected_blueprint.route('/create_mix', methods=['POST'])
 def create_mix():
     try:
@@ -34,7 +35,6 @@ def create_mix():
         if not os.path.exists(sound_path):
             return jsonify({"error": f"File not found: {sound_filename}"}), 404
 
-
         # Query the Beat and Sound models by their file paths to get the ids
         beat = Beat.query.filter_by(file_path=beat_filename).first()
         sound = Sound.query.filter_by(file_path=sound_filename).first()
@@ -48,18 +48,32 @@ def create_mix():
         beat_id = beat.id
         sound_id = sound.id
 
+        # Load the audio files
+        beat_audio = AudioSegment.from_file(beat_path, format="wav")
+        sound_audio = AudioSegment.from_file(sound_path, format="wav")
+
+        # Mix the two audio files
+        mixed_audio = beat_audio.overlay(sound_audio)
+
+        # Optionally, save the mix information to the database
+        # Save the mix as an MP3 file (or any other format you prefer)
+        mix_filename = f"{beat_id}_{sound_id}_mix.mp3"
+        mix_file_path = os.path.join(AUDIO_FOLDER, 'mixes', mix_filename)
+        mixed_audio.export(mix_file_path, format="mp3")
+
         # Create a new mix record in the database
         new_mix = Mix(
             title="My Mix",  # You can modify this to generate a unique title
             beat_id=beat_id,
             sound_id=sound_id,
+            file_path=mix_filename,  # Save the file path for later use
             user_id=1  # You should get the user_id from the current session or authentication
         )
         db.session.add(new_mix)
         db.session.commit()
 
         # Return a success response
-        return jsonify({"message": "Mix created successfully"}), 201
+        return jsonify({"message": "Mix created successfully", "mix_id": new_mix.id}), 201
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
