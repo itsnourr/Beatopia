@@ -61,55 +61,6 @@ def serve_audio(filename):
     """Serve mix audio files"""
     return send_from_directory(MIX_DIRECTORY, filename)
 
-@app.route('/tasks', methods=['GET'])
-def load_tasks():
-    tasks = Task.query.all()
-    return jsonify([task.to_dict() for task in tasks]), 200
-
-@app.route('/tasks', methods=['POST'])
-def add_task():
-    data = request.json
-    title = data.get('title')
-    status = data.get('status', 'to-do')  # Default status is 'to-do'
-    user_id = data.get('user_id')
-
-    if not title or not user_id:
-        return jsonify({'error': 'Title and user_id are required'}), 400
-
-    new_task = Task(title=title, status=status, user_id=user_id)
-    db.session.add(new_task)
-    db.session.commit()
-
-    return jsonify(new_task.to_dict()), 201
-
-@app.route('/tasks/<int:id>', methods=['DELETE'])
-def delete_task(id):
-    task = Task.query.get(id)
-    if not task:
-        return jsonify({'error': 'Task not found'}), 404
-
-    db.session.delete(task)
-    db.session.commit()
-    return jsonify({'message': 'Task deleted successfully'}), 200
-
-@app.route('/tasks/<int:id>', methods=['PUT'])
-def update_task_status(id):
-    task = Task.query.get(id)
-    if not task:
-        return jsonify({'error': 'Task not found'}), 404
-
-    data = request.json
-    new_status = data.get('status')
-
-    if new_status not in ['to-do', 'doing', 'done']:
-        return jsonify({'error': 'Invalid status value'}), 400
-
-    task.status = new_status
-    db.session.commit()
-
-    return jsonify(task.to_dict()), 200
-
-
 
 if __name__ == '__main__':
     scheduler = init_scheduler(app)

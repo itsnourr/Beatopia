@@ -39,63 +39,92 @@ def get_sounds():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     
+from flask import session, jsonify
+
 @protected_blueprint.route('/get_mixes', methods=['GET'])
 def get_mixes():
     try:
-        mixes = Mix.query.all()  # Get all mixes from the database
+        # Retrieve the current user's ID from the session
+        user_id = session.get('user_id')
+
+        if not user_id:
+            return jsonify({'error': 'User not authenticated'}), 401
+
+        # Fetch mixes for the current user
+        mixes = Mix.query.filter_by(user_id=user_id).all()
         mixes_data = []
+
         for mix in mixes:
             mix_data = {
                 'id': mix.id,
                 'title': mix.title,
-                'beat': mix.beat.title,  # Assuming beat is an object with a title
-                'sound': mix.sound.title,  # Assuming sound is an object with a title
-                'audioPath': mix.file_path  # Assuming file_path stores the filename
+                'beat': mix.beat.title,
+                'sound': mix.sound.title,
+                'audioPath': mix.file_path
             }
             mixes_data.append(mix_data)
-        return jsonify(mixes_data)  # Send back the list of mixes with their paths
+
+        return jsonify(mixes_data)
+    
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 @protected_blueprint.route('/get_recent_mixes', methods=['GET'])
 def get_recent_mixes():
     try:
-        # Fetch the 4 most recent mixes ordered by created_at in descending order
-        mixes = Mix.query.order_by(Mix.created_at.desc()).limit(4).all()
+        # Retrieve the current user's ID from the session
+        user_id = session.get('user_id')
+
+        if not user_id:
+            return jsonify({'error': 'User not authenticated'}), 401
+
+        # Fetch the most recent mixes for the current user
+        mixes = Mix.query.filter_by(user_id=user_id).order_by(Mix.created_at.desc()).limit(4).all()
         mixes_data = []
-        
+
         for mix in mixes:
             mix_data = {
                 'id': mix.id,
                 'title': mix.title,
-                'beat': mix.beat.title,  # Assuming beat is an object with a title
-                'sound': mix.sound.title,  # Assuming sound is an object with a title
-                'audioPath': mix.file_path  # Assuming file_path stores the filename
+                'beat': mix.beat.title,
+                'sound': mix.sound.title,
+                'audioPath': mix.file_path
             }
             mixes_data.append(mix_data)
-        
-        return jsonify(mixes_data)  # Send back the list of mixes with their paths
+
+        return jsonify(mixes_data)
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
     
-def get_recent_task():
+@protected_blueprint.route('/get_recent_tasks', methods=['GET'])
+def get_recent_tasks():
     try:
-        tasks = Task.query.order_by(Task.due_at.desc()).limit(4).all()
+        # Retrieve the current user's ID from the session
+        user_id = session.get('user_id')
+
+        if not user_id:
+            return jsonify({'error': 'User not authenticated'}), 401
+
+        # Fetch the most recent tasks for the current user
+        tasks = Task.query.filter_by(user_id=user_id).order_by(Task.due_at.desc()).limit(4).all()
         tasks_data = []
-        
+
         for task in tasks:
-            tasks_data = {
+            task_data = {
                 'id': task.id,
                 'title': task.title,
-                'label':task.label,
-                'status':task.status,
-                'dueDate': task.due_at,  
-                'done':False  
+                'label': task.label,
+                'status': task.status,
+                'dueDate': task.due_at,
+                'done': False
             }
-            tasks_data.append(tasks_data)
-        
-        return jsonify(tasks_data) 
+            tasks_data.append(task_data)
+
+        return jsonify(tasks_data)
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
