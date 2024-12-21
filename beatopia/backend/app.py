@@ -44,6 +44,7 @@ app = create_app()
 
 BEATS_DIRECTORY = os.path.join(os.path.dirname(__file__), 'audio', 'beats')
 SOUNDS_DIRECTORY = os.path.join(os.path.dirname(__file__), 'audio', 'sounds')
+MIX_DIRECTORY = os.path.join(os.path.dirname(__file__), 'audio', 'mixes')
 
 @app.route('/audio/beat/<filename>')
 def serve_beat(filename):
@@ -54,6 +55,11 @@ def serve_beat(filename):
 def serve_sound(filename):
     """Serve sound audio files"""
     return send_from_directory(SOUNDS_DIRECTORY, filename)
+
+@app.route('/audio/mixes/<filename>')
+def serve_audio(filename):
+    """Serve mix audio files"""
+    return send_from_directory(MIX_DIRECTORY, filename)
 
 if __name__ == '__main__':
     scheduler = init_scheduler(app)
