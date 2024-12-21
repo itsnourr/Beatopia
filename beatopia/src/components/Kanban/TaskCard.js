@@ -3,7 +3,14 @@ import { Draggable } from 'react-beautiful-dnd';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './TaskCard.css';
 
-const TaskCard = ({ id, title, label, dueDate, done, index, onEdit }) => {
+const TaskCard = ({ id, title, label, dueDate, done, index, onDelete }) => {
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', options);
+  };
+
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
@@ -21,13 +28,6 @@ const TaskCard = ({ id, title, label, dueDate, done, index, onEdit }) => {
                   <div className="card-title taskcard" title={title}>
                     {title}
                   </div>
-
-                  <button onClick={onEdit}>
-                    <i
-                      className="bi bi-pencil-square task-edit-icon taskcard"
-                      title="Edit Task"
-                    ></i>
-                  </button>
                 </div>
 
                 <div className="row-container taskcard">
@@ -36,16 +36,15 @@ const TaskCard = ({ id, title, label, dueDate, done, index, onEdit }) => {
                 </div>
 
                 <div className="row-container taskcard">
-                  <div className="due-date taskcard">Due {dueDate}</div>
+                  <div className="due-date taskcard">
+                    Due {formatDate(dueDate)}
+                  </div>
 
-                  <button>
+
+                  <button onClick={() => onDelete(id)}>
                     <i
-                      className={`${
-                        done
-                          ? 'bi bi-trash-fill'
-                          : 'bi bi-check-square-fill'
-                      } taskcard-icon  taskcard`}
-                      title={done ? 'Archive Task' : 'Mark as Done'}
+                      className={'bi bi-trash-fill taskcard-icon  taskcard'}
+                      title={'Archive Task'}
                     ></i>
                   </button>
                 </div>

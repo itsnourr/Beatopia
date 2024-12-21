@@ -14,6 +14,7 @@ import HomePage from './components/Homepage/Homepage';
 import Dashboard from './components/Kanban/Dashboard';
 import FooterPlayer from './components/Player/FooterPlayer';
 import ProtectedRoute from './components/Protected/ProtectedRoute';
+import Admin from './components/Landing/Admin';
 // <------------------------------------------------------------------->
 
 const App = () => {
@@ -23,24 +24,58 @@ const App = () => {
   const [isPlaying, setIsPlaying] = useState(false); // Track the play/pause state
   const audioRef = useRef(null);
 
+  const trackPlayerUsage = (name, path, isPlaying) => {
+    const playData = {
+      trackName: name,
+      audioPath: path,
+      isPlaying: isPlaying,
+      timestamp: new Date().toISOString(),  // Store timestamp
+    };
+
+    // You can log the data to console or send it to the backend
+    console.log('Track usage data:', playData);
+
+    // Optional: Send the data to the backend using fetch
+    fetch('/api/track-usage', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(playData),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log('Data tracked successfully:', data))
+      .catch((error) => console.error('Error tracking data:', error));
+  };
+
   const updateFooterPlayer = (name, path) => {
     // Only reset the player if the track or path has changed
     if (name !== trackName || path !== audioPath) {
       // Reset playing state to false
-      setIsPlaying(false); 
-  
+      setIsPlaying(false);
+
       if (audioRef.current) {
         audioRef.current.pause(); // Ensure the audio stops playing
         audioRef.current.load();  // Load the new track to be ready for playback
       }
-  
+
       // Update the state with new track details
       setTrackName(name);
       setAudioPath(path);
+
+      // Track the new data
+      trackPlayerUsage(name, path, isPlaying);
     }
   };
-  
-  
+
+  // When the audio starts playing or is paused
+  const handleAudioPlayPause = () => {
+    setIsPlaying((prevState) => {
+      const newState = !prevState;
+      trackPlayerUsage(trackName, audioPath, newState);
+      return newState;
+    });
+  };  
 
   return (
     <Router>
@@ -88,6 +123,14 @@ const App = () => {
             element={
               // <ProtectedRoute>
                 <SettingsPage updateFooterPlayer={updateFooterPlayer} />
+              // </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/contribute"
+            element={
+              // <ProtectedRoute>
+                <Admin updateFooterPlayer={updateFooterPlayer} />
               // </ProtectedRoute>
             }
           />

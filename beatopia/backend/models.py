@@ -79,3 +79,24 @@ class Task(db.Model):
 
     due_at = db.Column(db.DateTime, default=db.func.now())  # Last update
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
+class ListeningHistory(db.Model):
+    __tablename__ = 'listening_history'
+
+    historyID = db.Column(db.Integer, primary_key=True, autoincrement=True)  # Primary key
+    playDate = db.Column(db.DateTime, default=db.func.now())  # Date when the mix was played
+    durationPlayed = db.Column(db.Float, nullable=False)  # Duration for which the mix was played (in seconds)
+    
+    # Foreign Keys
+    mix_id = db.Column(db.Integer, db.ForeignKey('mixes.id'), nullable=False)  # Foreign key to Mix
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # Foreign key to User
+    
+    # Relationships
+    mix = db.relationship('Mix', backref='listening_histories', lazy=True)  # Relationship to Mix
+    user = db.relationship('User', backref='listening_histories', lazy=True)  # Relationship to User
+
+    def __init__(self, playDate, durationPlayed, mix_id, user_id):
+        self.playDate = playDate
+        self.durationPlayed = durationPlayed
+        self.mix_id = mix_id
+        self.user_id = user_id
