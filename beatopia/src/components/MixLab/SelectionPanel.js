@@ -22,11 +22,11 @@ const SelectionPanel = ({ pool, placeholder, newQuery, handleNewQuery, onItemSel
         <div className="settings-panel-container">
             {/* Search Bar */}
             <div className="my-mixes-search-bar">
-                <SearchBar
+                {/* <SearchBar
                     placeholder={placeholder}
                     value={newQuery}
                     onChange={handleNewQuery}
-                />
+                /> */}
             </div>
 
             {/* Music Cards */}
