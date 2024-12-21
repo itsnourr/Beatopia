@@ -17,6 +17,7 @@ def create_mix():
         # Get the beat and sound paths from the request
         beat_url = request.json.get('beatPath')
         sound_url = request.json.get('soundPath')
+        mix_title = request.json.get('mix_title')
 
         if not beat_url or not sound_url:
             return jsonify({"error": "Please provide both beat and sound paths."}), 400
@@ -63,7 +64,7 @@ def create_mix():
 
         # Create a new mix record in the database
         new_mix = Mix(
-            title="My Mix",  # You can modify this to generate a unique title
+            title=mix_title,  # You can modify this to generate a unique title
             beat_id=beat_id,
             sound_id=sound_id,
             file_path=mix_filename,  # Save the file path for later use
@@ -77,3 +78,4 @@ def create_mix():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+

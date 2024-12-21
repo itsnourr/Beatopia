@@ -1,5 +1,6 @@
 from db import db
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import CheckConstraint
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -8,6 +9,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False) 
+    isAdmin = db.Column(db.Boolean , default=False)
 
     # Relationships
     tasks = db.relationship('Task', backref='user', lazy=True)  # One-to-many with Task
@@ -64,7 +66,16 @@ class Task(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(100), nullable=False)  # Title of the task
-    is_completed = db.Column(db.Boolean, default=False)  # Task completion status
-    created_at = db.Column(db.DateTime, default=db.func.now())  # Timestamp
+    status = db.Column(db.String(100), default='to-do')  # Task completion status
+    
+    
+    # Add a Check constraint for status
+    __table_args__ = (
+        CheckConstraint(
+            "status IN ('done', 'to-do', 'doing')", 
+            name='check_status_valid'
+        ),
+    )
+
     due_at = db.Column(db.DateTime, default=db.func.now())  # Last update
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)

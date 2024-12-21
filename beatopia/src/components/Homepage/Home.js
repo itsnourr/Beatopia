@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState , useEffect} from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './Home.css'; 
 import { useNavigate } from 'react-router-dom';
@@ -6,71 +6,75 @@ import { useNavigate } from 'react-router-dom';
 import StaticTaskCard from '../Kanban/StaticTaskCard';
 import TitledMixCard from '../MixLab/TitledMixCard';
 
+import axios from 'axios';
+
 const Home = ({ updateFooterPlayer }) => { 
 
     const navigate = useNavigate();
+    const [recentlyPlayedMixes, setRecentlyPlayedMixes] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const recentlyPlayedMixes = [
-        {
-            id: 1,
-            title: "Study Beats",
-            beat: "Chill rhythm",
-            sound: "Chilled lo-fi",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 2,
-            title: "Morning Drive",
-            beat: "Upbeat tempo",
-            sound: "Energetic pop",
-            audioPath: `${process.env.PUBLIC_URL}/Sicily.wav`
-        },
-        {
-            id: 3,
-            title: "Jazz Nights",
-            beat: "Smooth jazz",
-            sound: "Sax and piano",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 4,
-            title: "Indie Vibes",
-            beat: "Guitar melodies",
-            sound: "Soft indie",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        }
-    ];
+    // const recentlyPlayedMixes = [
+    //     {
+    //         id: 1,
+    //         title: "Study Beats",
+    //         beat: "Chill rhythm",
+    //         sound: "Chilled lo-fi",
+    //         audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
+    //     },
+    //     {
+    //         id: 2,
+    //         title: "Morning Drive",
+    //         beat: "Upbeat tempo",
+    //         sound: "Energetic pop",
+    //         audioPath: `${process.env.PUBLIC_URL}/Sicily.wav`
+    //     },
+    //     {
+    //         id: 3,
+    //         title: "Jazz Nights",
+    //         beat: "Smooth jazz",
+    //         sound: "Sax and piano",
+    //         audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
+    //     },
+    //     {
+    //         id: 4,
+    //         title: "Indie Vibes",
+    //         beat: "Guitar melodies",
+    //         sound: "Soft indie",
+    //         audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
+    //     }
+    // ];
 
-    const mostPlayedMixes = [
-        {
-            id: 1,
-            title: "Study Beats",
-            beat: "Chill rhythm",
-            sound: "Chilled lo-fi",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 2,
-            title: "Morning Drive",
-            beat: "Upbeat tempo",
-            sound: "Energetic pop",
-            audioPath: `${process.env.PUBLIC_URL}/Sicily.wav`
-        },
-        {
-            id: 3,
-            title: "Jazz Nights",
-            beat: "Smooth jazz",
-            sound: "Sax and piano",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        },
-        {
-            id: 4,
-            title: "Indie Vibes",
-            beat: "Guitar melodies",
-            sound: "Soft indie",
-            audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
-        }
-    ];
+    // const mostPlayedMixes = [
+    //     {
+    //         id: 1,
+    //         title: "Study Beats",
+    //         beat: "Chill rhythm",
+    //         sound: "Chilled lo-fi",
+    //         audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
+    //     },
+    //     {
+    //         id: 2,
+    //         title: "Morning Drive",
+    //         beat: "Upbeat tempo",
+    //         sound: "Energetic pop",
+    //         audioPath: `${process.env.PUBLIC_URL}/Sicily.wav`
+    //     },
+    //     {
+    //         id: 3,
+    //         title: "Jazz Nights",
+    //         beat: "Smooth jazz",
+    //         sound: "Sax and piano",
+    //         audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
+    //     },
+    //     {
+    //         id: 4,
+    //         title: "Indie Vibes",
+    //         beat: "Guitar melodies",
+    //         sound: "Soft indie",
+    //         audioPath: `${process.env.PUBLIC_URL}/RnB.wav`
+    //     }
+    // ];
 
     const soonDueTasks = [
         { id: "1", title: "Buy Stationery for School", label: "Personal", dueDate: "Nov 5, 2024", done: false },
@@ -78,6 +82,28 @@ const Home = ({ updateFooterPlayer }) => {
         { id: "3", title: "Prepare for Team Meeting", label: "Work", dueDate: "Nov 1, 2024", done: false },
         { id: "4", title: "Plan Grocery Shopping", label: "Personal", dueDate: "Nov 5, 2024", done: false },
     ];
+
+        useEffect(() => {
+            const fetchMixes = async () => {
+                try {
+                    const response = await axios.get('http://localhost:5000/api/get_recent_mixes', {
+                        withCredentials: true // If authentication is required
+                    });
+    
+                    // Update mixes with the full URL for the audio path
+                    const updatedMixes = response.data.map((mix) => ({
+                        ...mix,
+                        audioPath: `http://localhost:5000/audio/mixes/${mix.audioPath}`, // Append the URL for mixes
+                    }));
+    
+                    setRecentlyPlayedMixes(updatedMixes);  // Set mixes in state
+                } catch (error) {
+                    console.error("Failed to fetch mixes:", error);
+                }
+            };
+    
+            fetchMixes();
+        }, []);  // Empty dependency array ensures this runs only once on mount
 
     const goToDashboard = () => navigate('/dashboard');
     const goToMixLab = () => navigate('/mixlab');
@@ -110,7 +136,7 @@ const Home = ({ updateFooterPlayer }) => {
             
                                     <div key={task.id} className="col-md-3 col-sm-6 col-12 mb-3">
                                         <StaticTaskCard  
-                                             key={task.id} 
+                                            key={task.id} 
                                             id={task.id} 
                                             title={task.title} 
                                             label={task.label} 
@@ -135,7 +161,7 @@ const Home = ({ updateFooterPlayer }) => {
             </div>
 
              
-            <h3 className='grid-title'> Last Played</h3>
+            <h3 className='grid-title'> Last Created</h3>
 
             <div className='my-mixes-grid home'>
 
@@ -170,7 +196,7 @@ const Home = ({ updateFooterPlayer }) => {
 
             </div>
 
-            <h3 className='grid-title'> Most Played</h3>
+            {/* <h3 className='grid-title'> Most Played</h3>
 
             <div className='my-mixes-grid home'>
 
@@ -203,7 +229,7 @@ const Home = ({ updateFooterPlayer }) => {
                 </div>
 
 
-            </div>
+            </div> */}
 
                    
 
