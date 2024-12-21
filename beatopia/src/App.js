@@ -14,6 +14,7 @@ import HomePage from './components/Homepage/Homepage';
 import Dashboard from './components/Kanban/Dashboard';
 import FooterPlayer from './components/Player/FooterPlayer';
 import ProtectedRoute from './components/Protected/ProtectedRoute';
+import Admin from './components/Landing/Admin';
 // <------------------------------------------------------------------->
 
 const App = () => {
@@ -88,6 +89,14 @@ const App = () => {
             element={
               // <ProtectedRoute>
                 <SettingsPage updateFooterPlayer={updateFooterPlayer} />
+              // </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/contribute"
+            element={
+              // <ProtectedRoute>
+                <Admin updateFooterPlayer={updateFooterPlayer} />
               // </ProtectedRoute>
             }
           />

@@ -5,7 +5,7 @@ import TaskCard from './TaskCard';
 import InputCard from './InputCard';
 import './TaskColumn.css';
 
-const TaskColumn = ({ name, color, tasks, columnId, updateTask }) => {
+const TaskColumn = ({ name, color, tasks, columnId, updateTask, onDragEnd, addTaskToColumn, onDelete }) => {
   const [isInputCardVisible, setInputCardVisible] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
 
@@ -19,11 +19,16 @@ const TaskColumn = ({ name, color, tasks, columnId, updateTask }) => {
   };
 
   const handleSaveTask = (updatedTask) => {
-    // Call the updateTask function passed from parent to save the updated task
-    updateTask(updatedTask);
+    const newTask = {
+        ...updatedTask,
+        id: `${Date.now()}`, // Unique ID
+        done: false,
+    };
+
+    addTaskToColumn(columnId, newTask); // Add to parent state
     setInputCardVisible(false);
     setTaskToEdit(null);
-  };
+};
 
   const handleCancelTaskEdit = () => {
     setInputCardVisible(false);
@@ -71,6 +76,7 @@ const TaskColumn = ({ name, color, tasks, columnId, updateTask }) => {
                       dueDate={task.dueDate}
                       done={task.done}
                       index={index}
+                      onDelete = {onDelete}
                       onEdit={() => handleEditTask(task)}
                     />
                   ))

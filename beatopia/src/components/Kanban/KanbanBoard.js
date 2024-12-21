@@ -40,56 +40,104 @@ const KanbanBoard = () => {
   
   const onDragEnd = (result) => {
     const { source, destination } = result;
-
+  
     // If dropped outside the board, do nothing
     if (!destination) return;
-
+  
     // If the task is dropped in the same position, do nothing
     if (source.droppableId === destination.droppableId && source.index === destination.index) {
-        return;
+      return;
     }
-
+  
     const sourceColumn = columns[source.droppableId];
     const destColumn = columns[destination.droppableId];
-
-    const sourceTasks = Array.from(sourceColumn.tasks);
-    const destTasks = Array.from(destColumn.tasks);
-    const [movedTask] = sourceTasks.splice(source.index, 1);
-
-    // If moving between columns, add the task to the destination column
-    destTasks.splice(destination.index, 0, movedTask);
-
+  
+    // Make a copy of the source tasks and destination tasks
+    const sourceTasks = [...sourceColumn.tasks];
+    const destTasks = [...destColumn.tasks];
+    const [movedTask] = sourceTasks.splice(source.index, 1); // Remove the task from the source column
+  
+    // If moving within the same column, just reorder
+    if (source.droppableId === destination.droppableId) {
+      sourceTasks.splice(destination.index, 0, movedTask);
+    } else {
+      // Otherwise, move the task to the destination column
+      destTasks.splice(destination.index, 0, movedTask);
+    }
+  
     // Update 'done' status if the task is moved to the "Done" column
     if (destination.droppableId === "done") {
-        movedTask.done = true;
+      movedTask.done = true;
     } else {
-        movedTask.done = false;
+      movedTask.done = false;
+    }
+  
+    // Update the columns state with the modified tasks
+    setColumns({
+      ...columns,
+      [source.droppableId]: { ...sourceColumn, tasks: sourceTasks },
+      [destination.droppableId]: { ...destColumn, tasks: destTasks },
+    });
+  };
+  
+  
+
+  const addTaskToColumn = (columnId, newTask) => {
+    // Check if any required property is null or undefined
+    if (!newTask.id || !newTask.title || !newTask.label || !newTask.dueDate || newTask.done === undefined) {
+      alert("Mandatory fields");
+      return; // Stop further execution if validation fails
     }
 
-    // Update state with the new task lists in both columns
-    setColumns({
-        ...columns,
-        [source.droppableId]: { ...sourceColumn, tasks: sourceTasks },
-        [destination.droppableId]: { ...destColumn, tasks: destTasks },
-    });
-};
+    setColumns((prevColumns) => {
+      const column = prevColumns[columnId];
+      // If the new task is being added to the "done" column, set 'done' to true
+      if (columnId === 'done') {
+        newTask.done = true;
+      } else {
+        // Otherwise, set 'done' to false
+        newTask.done = false;
+      }
 
+      const updatedTasks = [...column.tasks, newTask];
+      return {
+        ...prevColumns,
+        [columnId]: { ...column, tasks: updatedTasks },
+      };
+    });
+  };
+
+  const handleDeleteTask = (id) => {
+    setColumns((prevColumns) => {
+      const updatedColumns = { ...prevColumns };
+
+      Object.keys(updatedColumns).forEach((columnId) => {
+        updatedColumns[columnId].tasks = updatedColumns[columnId].tasks.filter(task => task.id !== id);
+      });
+
+      return updatedColumns;
+    });
+  };
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="board">
-        {Object.entries(columns).map(([columnId, column]) => (
+      {Object.keys(columns).map((columnId) => (
           <TaskColumn
-            key={columnId}
-            columnId={columnId}
-            name={column.name}
-            color={column.color}
-            tasks={column.tasks}
+              key={columnId}
+              name={columns[columnId].name}
+              color={columns[columnId].color}
+              tasks={columns[columnId].tasks}
+              columnId={columnId}
+              onDelete={handleDeleteTask}
+              addTaskToColumn={addTaskToColumn}
           />
-        ))}
+      ))}
+
       </div>
     </DragDropContext>
   );
 };
 
 export default KanbanBoard;
+

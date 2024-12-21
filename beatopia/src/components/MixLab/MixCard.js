@@ -12,7 +12,7 @@ const MixCard = ({ beat, sound, title, audioPath, updateFooterPlayer }) => {
       }
     };
 
-    const editMix = () => {};
+    const deleteMix = () => {};
 
   return (
     <div className="card text-center mixcard">
@@ -31,7 +31,7 @@ const MixCard = ({ beat, sound, title, audioPath, updateFooterPlayer }) => {
                 </div>
 
                 <div className='row-container mixcard'> 
-                    <button className="edit-mix-button mixcard" onClick={editMix} title='Edit Mix'>Edit Mix</button>               
+                    <button className="edit-mix-button mixcard" onClick={deleteMix} title='Delete Mix'>Delete Mix</button>               
                     <button className="play-now-button mixcard" onClick={loadMix} title='Play Now'>Load Mix</button>               
                 </div>
                 
